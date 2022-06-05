@@ -10,7 +10,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "start:proxy": "ng serve --proxy-config ./proxy.config.json"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +22,7 @@
     "@angular/core": "~13.3.0",
     "@angular/forms": "~13.3.0",
     "@angular/language-service": "~13.3.0",
+    "@angular/material": "^13.3.5",
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
@@ -31,8 +33,18 @@
     "@coreui/icons": "^2.1.0",
     "@coreui/icons-angular": "^3.0.0",
     "@coreui/utils": "^1.3.1",
+    "@fullcalendar/angular": "^5.11.0",
+    "@fullcalendar/bootstrap": "^5.11.0",
+    "@fullcalendar/bootstrap5": "^5.11.0",
+    "@fullcalendar/daygrid": "^5.11.0",
+    "@fullcalendar/interaction": "^5.11.0",
+    "@fullcalendar/list": "^5.11.0",
+    "@fullcalendar/timegrid": "^5.11.0",
     "chart.js": "^3.7.1",
+    "fullcalendar": "^5.11.0",
     "ngx-perfect-scrollbar": "^10.1.1",
+    "primeicons": "^5.0.0",
+    "primeng": "^13.4.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

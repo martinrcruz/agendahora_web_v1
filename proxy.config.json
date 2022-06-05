@@ -1,0 +1,8 @@
+{
+    "/agendahora_v1/*": {
+        "target": "http://localhost/agendahora_v1/agendahora_backend_v1/",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

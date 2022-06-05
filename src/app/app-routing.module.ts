@@ -2,15 +2,22 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DefaultLayoutComponent } from './containers';
-import { Page404Component } from './views/pages/page404/page404.component';
-import { Page500Component } from './views/pages/page500/page500.component';
-import { LoginComponent } from './views/pages/login/login.component';
-import { RegisterComponent } from './views/pages/register/register.component';
+
+import { HomeComponent } from './pages/home/home.component';
+import { AgendaComponent } from './pages/agenda/agenda.component';
+import { HistorialAgendaComponent } from './pages/historial-agenda/historial-agenda.component';
+import { SolicitudVehiculoComponent } from './pages/solicitud-vehiculo/solicitud-vehiculo.component';
+import { SolicitudClienteComponent } from './pages/solicitud-cliente/solicitud-cliente.component';
+import { MensajeriaComponent } from './pages/mensajeria/mensajeria.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -21,86 +28,33 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'dashboard',
-        loadChildren: () =>
-          import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
+        path: 'home',
+        component: HomeComponent
       },
       {
-        path: 'theme',
-        loadChildren: () =>
-          import('./views/theme/theme.module').then((m) => m.ThemeModule)
+        path: 'agenda',
+        component: AgendaComponent
       },
       {
-        path: 'base',
-        loadChildren: () =>
-          import('./views/base/base.module').then((m) => m.BaseModule)
+        path: 'historial-agenda',
+        component: HistorialAgendaComponent
       },
       {
-        path: 'buttons',
-        loadChildren: () =>
-          import('./views/buttons/buttons.module').then((m) => m.ButtonsModule)
+        path: 'mensajeria',
+        component: MensajeriaComponent
       },
       {
-        path: 'forms',
-        loadChildren: () =>
-          import('./views/forms/forms.module').then((m) => m.CoreUIFormsModule)
+        path: 'solicitud-cliente',
+        component: SolicitudClienteComponent
       },
       {
-        path: 'charts',
-        loadChildren: () =>
-          import('./views/charts/charts.module').then((m) => m.ChartsModule)
+        path: 'solicitud-vehiculo',
+        component: SolicitudVehiculoComponent
       },
-      {
-        path: 'icons',
-        loadChildren: () =>
-          import('./views/icons/icons.module').then((m) => m.IconsModule)
-      },
-      {
-        path: 'notifications',
-        loadChildren: () =>
-          import('./views/notifications/notifications.module').then((m) => m.NotificationsModule)
-      },
-      {
-        path: 'widgets',
-        loadChildren: () =>
-          import('./views/widgets/widgets.module').then((m) => m.WidgetsModule)
-      },
-      {
-        path: 'pages',
-        loadChildren: () =>
-          import('./views/pages/pages.module').then((m) => m.PagesModule)
-      },
+     
     ]
   },
-  {
-    path: '404',
-    component: Page404Component,
-    data: {
-      title: 'Page 404'
-    }
-  },
-  {
-    path: '500',
-    component: Page500Component,
-    data: {
-      title: 'Page 500'
-    }
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    data: {
-      title: 'Login Page'
-    }
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    data: {
-      title: 'Register Page'
-    }
-  },
-  {path: '**', redirectTo: 'dashboard'}
+
 ];
 
 @NgModule({
