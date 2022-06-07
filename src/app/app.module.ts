@@ -42,6 +42,7 @@ import {
   SidebarModule,
   TabsModule,
   UtilitiesModule,
+  ModalModule
 } from '@coreui/angular';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -59,9 +60,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { TablaComponent } from './components/tabla/tabla.component';
-import { ModalComponent } from './components/modal/modal.component';
-import { CalendarioComponent } from './components/calendario/calendario.component'; // a plugin!
+import { TablaClienteComponent } from './components/tablas/tabla-cliente/tabla-cliente.component';
+import { ModalVehiculoAddComponent } from './components/modals/modal-vehiculo-add/modal-vehiculo-add.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
+import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
+import { ClienteComponent } from './pages/cliente/cliente.component';
+import { ServiciosComponent } from './pages/servicios/servicios.component';
+import { TablaServicioComponent } from './components/tablas/tabla-servicio/tabla-servicio.component';
+
 
 //[ANGULAR MATERIAL]
 import { MatTableModule } from '@angular/material/table';
@@ -69,7 +75,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSelectModule} from '@angular/material/select';
 
 
 //FULLCALENDAR
@@ -78,6 +86,11 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
+import { TablaHistorialServicioComponent } from './components/tablas/tabla-historial-servicio/tabla-historial-servicio.component';
+import { TablaSolicitudClienteComponent } from './components/tablas/tabla-solicitud-cliente/tabla-solicitud-cliente.component';
+import { TablaVehiculoComponent } from './components/tablas/tabla-vehiculo/tabla-vehiculo.component';
+import { TablaSolicitudVehiculoComponent } from './components/tablas/tabla-solicitud-vehiculo/tabla-solicitud-vehiculo.component';
+import { MatNativeDateModule } from '@angular/material/core';
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin,
@@ -97,7 +110,30 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS, HomeComponent, AgendaComponent, HistorialAgendaComponent, SolicitudVehiculoComponent, SolicitudClienteComponent, MensajeriaComponent, LoginComponent, RegisterComponent, ProfileComponent, NotFoundComponent, TablaComponent, ModalComponent, CalendarioComponent],
+  declarations: [
+    AppComponent,
+    ...APP_CONTAINERS,
+    HomeComponent,
+    AgendaComponent,
+    HistorialAgendaComponent,
+    SolicitudVehiculoComponent,
+    SolicitudClienteComponent,
+    MensajeriaComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
+    NotFoundComponent,
+    CalendarioComponent,
+    VehiculoComponent,
+    ClienteComponent,
+    ServiciosComponent,
+    TablaClienteComponent,
+    TablaServicioComponent,
+    TablaHistorialServicioComponent,
+    TablaSolicitudClienteComponent,
+    TablaVehiculoComponent,
+    TablaSolicitudVehiculoComponent,
+    ModalVehiculoAddComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -132,7 +168,11 @@ const APP_CONTAINERS = [
     MatInputModule,
     MatSortModule,
     MatDialogModule,
-    FullCalendarModule
+    FullCalendarModule,
+    ModalModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
   ],
   providers: [
     {

@@ -63,16 +63,38 @@ $enable-rtl: true;
 
 
 .sidebar {
-    background-color: #F13A3A;
+    background-color: #df5d5d;
 }
+
+
+
+.sidebar-nav .nav-group.show{
+  background-color: #e26464 !important;
+  color:white !important;
+
+}
+
 .sidebar-brand {
     padding: 10px 0px 0px 0px;
 }
-.nav-link {
-    color:white;
+.nav-title{
+  color:white !important;
 }
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 //FULLCALENDAR SYLES
+.fc-col-header-cell-cushion {
+  color: rgb(48, 48, 48) !important;
+  text-decoration: none;
+}
+
+.fc, .fc-daygrid-day-number{
+  color: black !important;
+  text-decoration: none;
+}
+.fc-prev-button {
+  padding:10px;
+}

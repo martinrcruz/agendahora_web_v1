@@ -1,37 +1,29 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HistorialAgendaService } from 'src/app/services/historial-agenda.service';
+import { ClienteService } from 'src/app/services/cliente.service';
+import { Cliente } from 'src/app/models/cliente.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { AgendaHora } from '../../models/historial-servicio.model';
-
 
 @Component({
-  selector: 'app-tabla',
-  templateUrl: './tabla.component.html',
-  styleUrls: ['./tabla.component.scss']
+  selector: 'app-tabla-cliente',
+  templateUrl: './tabla-cliente.component.html',
+  styleUrls: ['./tabla-cliente.component.scss']
 })
-export class TablaComponent implements OnInit {
-  private id: number = 0
-  displayedColumns: string[] = ['id_servicio', 'nombre', 'descripcion', 'fecha_entrada', 'fecha_salida', 'id_usuario_tecnico', 'id_cliente', 'id_vehiculo', 'id_usuario_cargo'];
+export class TablaClienteComponent implements OnInit {
+
+
+  displayedColumns: string[] = ['correo', 'nombre', 'apellidop', 'apellidom', 'rut', 'numero_contacto', 'direccion', 'sucursal', 'nombre_usuario'];
 
   dataSource: any
-
 
   @ViewChild(MatPaginator) paginator: any = MatPaginator;
   @ViewChild(MatSort) sort: any = MatSort;
 
-
-
-  constructor(private historialAgendaService: HistorialAgendaService) { }
+  constructor(private clienteService: ClienteService) { }
 
   ngOnInit(): void {
-    this.search()
-
-  }
-
-  ngAfterViewInit() {
-
+    this.getCliente()
   }
 
   applyFilter(event: Event) {
@@ -42,12 +34,12 @@ export class TablaComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
-
-  search() {
-    this.historialAgendaService.getHistorialAgenda()
+  
+  getCliente() {
+    this.clienteService.getCliente()
       .subscribe({
         next: (res) => {
+          console.log(res)
           var newData = Object.entries(res)
           const datos = (newData[1][1])
 
@@ -62,6 +54,5 @@ export class TablaComponent implements OnInit {
         }
       })
   }
+
 }
-
-

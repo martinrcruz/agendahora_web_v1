@@ -13,6 +13,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ServiciosComponent } from './pages/servicios/servicios.component';
+import { ClienteComponent } from './pages/cliente/cliente.component';
+import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 
 const routes: Routes = [
   {
@@ -36,6 +39,10 @@ const routes: Routes = [
         component: AgendaComponent
       },
       {
+        path: 'servicios',
+        component: ServiciosComponent
+      },
+      {
         path: 'historial-agenda',
         component: HistorialAgendaComponent
       },
@@ -44,14 +51,22 @@ const routes: Routes = [
         component: MensajeriaComponent
       },
       {
+        path: 'cliente',
+        component: ClienteComponent
+      },
+      {
         path: 'solicitud-cliente',
         component: SolicitudClienteComponent
+      },
+      {
+        path: 'vehiculo',
+        component: VehiculoComponent
       },
       {
         path: 'solicitud-vehiculo',
         component: SolicitudVehiculoComponent
       },
-     
+
     ]
   },
 

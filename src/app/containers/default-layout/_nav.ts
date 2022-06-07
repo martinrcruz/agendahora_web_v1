@@ -11,46 +11,70 @@ export const navItems: INavData[] = [
     name: 'NAVEGACION'
   },
   {
-    name: 'Agenda',
-    iconComponent: { name: 'cil-puzzle' },
+    name: 'Calendario',
+    iconComponent: { name: 'cil-calendar' },
     children: [
       {
-        name: 'Calendario',
+        name: 'Agenda',
         url: '/agenda',
-        iconComponent: { name: 'cil-cursor' },
+        iconComponent: { name: 'cil-book' },
+
+      },
+      {
+        name: 'Servicios',
+        url: '/servicios',
+        iconComponent: { name: 'cil-task' },
 
       },
       {
         name: 'Historial',
         url: '/historial-agenda',
-        iconComponent: { name: 'cil-cursor' },
+        iconComponent: { name: 'cil-history' },
 
       }
     ]
   },
+
   {
-    name: 'Solicitudes',
-    iconComponent: { name: 'cil-cursor' },
+    name: 'Clientes',
+    iconComponent: { name: 'cil-group' },
     children: [
       {
-        name: 'Solicitud Vehiculos',
-        url: '/solicitud-vehiculo',
-        iconComponent: { name: 'cil-cursor' },
+        name: 'Clientes',
+        url: '/cliente',
+        iconComponent: { name: 'cil-hand-point-right' },
 
       },
       {
         name: 'Solicitud Clientes',
         url: '/solicitud-cliente',
-        iconComponent: { name: 'cil-cursor' },
+        iconComponent: { name: 'cil-bell-exclamation' },
 
       }
     ]
   },
+  {
+    name: 'Vehiculos',
+    iconComponent: { name: 'cil-car-alt' },
+    children: [
+      {
+        name: 'Vehiculos',
+        url: '/vehiculo',
+        iconComponent: { name: 'cil-hand-point-right' },
 
+      },
+      {
+        name: 'Solicitud Vehiculos',
+        url: '/solicitud-vehiculo',
+        iconComponent: { name: 'cil-bell-exclamation' },
+
+      }
+    ]
+  },
   {
     name: 'Mensajeria',
     url: '/mensajeria',
-    iconComponent: { name: 'cil-chart-pie' }
+    iconComponent: { name: 'cil-chat-bubble' }
   },
 
 ];

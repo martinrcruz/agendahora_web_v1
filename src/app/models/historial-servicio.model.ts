@@ -1,5 +1,12 @@
 export interface HistorialAgenda {
-
+    nombre: string,
+    descripcion: string,
+    fecha_entrada: string,
+    fecha_salida: string,
+    id_usuario_tecnico: number,
+    id_cliente: number,
+    id_vehiculo: number,
+    id_usuario_cargo: number
 }
 
 export interface AgendaHora {
@@ -12,5 +19,5 @@ export interface AgendaHora {
     id_usuario_tecnico: number,
     id_cliente: number,
     id_vehiculo: number,
-    id_usuario_cargo: number,
+    id_usuario_cargo: 1
 }
