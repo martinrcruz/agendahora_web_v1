@@ -16,11 +16,11 @@ export class VehiculoService {
 
 
   getVehiculo() {
-    return this.http.get<Vehiculo>(`${this.apiUrl}/${this.controllerUrl}/getVehiculo`);
+    return this.http.get<Vehiculo>(`${this.apiUrl}${this.controllerUrl}/getVehiculo`);
   }
 
   getVehiculoById(id: any) {
-    return this.http.post<Vehiculo>(`${this.apiUrl}/${this.controllerUrl}/getVehiculoById`, id);
+    return this.http.post<Vehiculo>(`${this.apiUrl}${this.controllerUrl}/getVehiculoById`, id);
   }
 
   addVehiculo(vehiculoData: any) {
@@ -28,10 +28,10 @@ export class VehiculoService {
   }
 
   updateVehiculo(vehiculoData: any) {
-    return this.http.post<Vehiculo>(`${this.apiUrl}/${this.controllerUrl}/updateVehiculo`, vehiculoData);
+    return this.http.post<Vehiculo>(`${this.apiUrl}${this.controllerUrl}/updateVehiculo`, vehiculoData);
   }
 
-  deleteVehiculo(id: any) {
-    return this.http.post<Vehiculo>(`${this.apiUrl}/${this.controllerUrl}/deleteVehiculo`, id);
+  deleteVehiculo(id_vehiculo: any) {
+    return this.http.post<Vehiculo>(`${this.apiUrl}${this.controllerUrl}/deleteVehiculo`, id_vehiculo);
   }
 }

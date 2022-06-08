@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -76,8 +76,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatSelectModule} from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
 
 
 //FULLCALENDAR
@@ -91,6 +91,7 @@ import { TablaSolicitudClienteComponent } from './components/tablas/tabla-solici
 import { TablaVehiculoComponent } from './components/tablas/tabla-vehiculo/tabla-vehiculo.component';
 import { TablaSolicitudVehiculoComponent } from './components/tablas/tabla-solicitud-vehiculo/tabla-solicitud-vehiculo.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ModalVehiculoEditComponent } from './components/modals/modal-vehiculo-edit/modal-vehiculo-edit.component';
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin,
@@ -133,7 +134,8 @@ const APP_CONTAINERS = [
     TablaSolicitudClienteComponent,
     TablaVehiculoComponent,
     TablaSolicitudVehiculoComponent,
-    ModalVehiculoAddComponent],
+    ModalVehiculoAddComponent,
+    ModalVehiculoEditComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

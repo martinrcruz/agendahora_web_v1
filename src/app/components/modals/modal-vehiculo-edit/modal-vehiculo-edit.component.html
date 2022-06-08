@@ -1,7 +1,6 @@
 <div class="container">
     <div class="row">
-        <button (click)="openModal()" cButton class="openModalButton"><i class="fa-solid fa-plus"></i> Agregar
-            Vehiculo</button>
+ 
 
         <c-modal id="openModal" [visible]="visible" (visibleChange)="handleModalChange($event)">
             <c-modal-header>
@@ -28,14 +27,14 @@
 
 
 
-                        <form [formGroup]="vehiculoForm" (ngSubmit)="addVehiculo()">
-
-                            <div cFormFloating class="mb-3" >
+                        <form [formGroup]="vehiculoForm" (ngSubmit)="updateVehiculo()">
+                            <div cFormFloating class="mb-3">
                                 <input cFormControl id="floatingInput" placeholder="Nombre" type="text" name="id_vehiculo"
-                                    formControlName="id_vehiculo" [readonly]="true" />
+                                    formControlName="id_vehiculo" [readonly]="true"/>
                                 <label cLabel for="floatingInput">Id Vehiculo</label>
                             </div>
 
+                        
                             <div cFormFloating class="mb-3">
                                 <input cFormControl id="floatingInput" placeholder="Nombre" type="text" name="nombre"
                                     formControlName="nombre" />

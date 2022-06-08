@@ -12,4 +12,8 @@ export class VehiculoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+  onUpdated(event: Event) {
+    console.log('updated')
+  }
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
+import { TablaVehiculoComponent } from '../../tablas/tabla-vehiculo/tabla-vehiculo.component';
 
 
 
@@ -14,6 +15,12 @@ export class ModalVehiculoAddComponent implements OnInit {
 
   constructor(private vehiculoService: VehiculoService) { }
 
+
+
+  @Output() onSubmited = new EventEmitter<string>();
+
+
+  
   ngOnInit(): void {
   }
 
@@ -24,6 +31,7 @@ export class ModalVehiculoAddComponent implements OnInit {
   saveResponse: any;
 
   vehiculoForm = new FormGroup({
+    id_vehiculo: new FormControl({value: 'No aplica', disabled: true}),
     nombre: new FormControl('', Validators.required),
     marca: new FormControl('', Validators.required),
     modelo: new FormControl('', Validators.required),
@@ -33,9 +41,7 @@ export class ModalVehiculoAddComponent implements OnInit {
     color: new FormControl('', Validators.required),
   })
 
-
   addVehiculo() {
-
     var formData: any = new FormData();
     formData.append("nombre", this.vehiculoForm.get("nombre")?.value);
     formData.append("marca", this.vehiculoForm.get("marca")?.value);
@@ -51,6 +57,9 @@ export class ModalVehiculoAddComponent implements OnInit {
           next: (res) => {
             this.saveResponse = res;
             console.log(this.saveResponse)
+
+            this.openModal()
+
           },
           error: (err) => {
             console.log(this.vehiculoForm.getRawValue())
