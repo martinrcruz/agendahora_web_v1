@@ -38,12 +38,12 @@ export class TablaVehiculoComponent implements OnInit {
 
   openModalAdd() {
     this.dialog.open(ModalVehiculoAddComponent, {
-      width: '60%',
+      width: '100%',
     })
   }
   openModalEdit() {
     this.dialog.open(ModalVehiculoEditComponent, {
-      width: '60%',
+      width: '100%',
     })
   }
 
@@ -78,6 +78,10 @@ export class TablaVehiculoComponent implements OnInit {
     var formData: any = new FormData();
     formData.append("id_vehiculo", id_vehiculo);
 
+
+
+
+    
     if (confirm('remove?')) {
       this.vehiculoService.deleteVehiculo(formData)
         .subscribe({
