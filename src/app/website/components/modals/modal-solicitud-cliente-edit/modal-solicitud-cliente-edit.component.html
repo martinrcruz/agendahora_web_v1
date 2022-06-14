@@ -1,0 +1,139 @@
+<div class="container">
+    <div class="row">
+ 
+
+        <c-modal id="openModal" [visible]="visible"  size="xl" (visibleChange)="handleModalChange($event)">
+            <c-modal-header>
+                <h5 cModalTitle>Modal title</h5>
+                <button (click)="openModal()" cButtonClose></button>
+            </c-modal-header>
+            <c-modal-body>
+
+                <!-- <div *ngIf="!solicitudClienteForm.valid" class="alert alert-danger" role="alert"> -->
+                <span [ngClass]="errorClass">
+                    <div class="container">
+                        <div class="row">
+                            <div class="text-center pb-4" style="color:red;">
+                                {{ errorMessage }}
+
+                            </div>
+                        </div>
+                    </div>
+                </span>
+                <!-- </div> -->
+
+                <div class="container-fluid">
+                    <div class="row">
+
+
+                        <form [formGroup]="solicitudClienteForm" (ngSubmit)="updateSolicitudCliente()">
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Id solicitud cliente" type="text"
+                                            name="id_solicitud_cliente" formControlName="id_solicitud_cliente" [readonly]="true" />
+                                            <label cLabel for="floatingInput">Id Solicitud Cliente</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Nombre" type="text"
+                                                name="nombre" formControlName="nombre" />
+                                            <label cLabel for="floatingInput">Nombre</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Correo" type="text"
+                                                name="correo" formControlName="correo" />
+                                            <label cLabel for="floatingInput">Correo</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Apellidop" type="text"
+                                                name="apellidop" formControlName="apellidop" />
+                                            <label cLabel for="floatingInput">Apellido paterno</label>
+                                        </div>
+                                    </div>
+                                    </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Apellidom" type="text"
+                                                name="apellidom" formControlName="apellidom" />
+                                            <label cLabel for="floatingInput">Apellido materno</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Rut" type="text"
+                                                name="rut" formControlName="rut" />
+                                            <label cLabel for="floatingInput">Rut</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Numero_contacto" type="text"
+                                                name="numero_contacto" formControlName="numero_contacto" />
+                                            <label cLabel for="floatingInput">Numero de contacto</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Direccion" type="text"
+                                                name="direccion" formControlName="direccion" />
+                                            <label cLabel for="floatingInput">Direccion</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Sucursal" type="text"
+                                                name="sucursal" formControlName="sucursal" />
+                                            <label cLabel for="floatingInput">Sucursal</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Nombre de usuario" type="text"
+                                                name="nombre_usuario" formControlName="nombre_usuario" />
+                                            <label cLabel for="floatingInput">Nombre de usuario</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Id Usuario Gestor" type="text"
+                                                name="id_usuario_gestor" formControlName="id_usuario_gestor" />
+                                            <label cLabel for="floatingInput">Id Usuario Gestor</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <c-modal-footer>
+
+                                <button cButton class="btn-enviar" type="submit"
+                                    [disabled]="solicitudClienteForm.invalid">Agregar</button>
+
+                                <button (click)="openModal()" class="btn-cerrar" cButton>
+                                    Cerrar
+                                </button>
+                            </c-modal-footer>
+                        </form>
+
+
+
+
+                    </div>
+                </div>
+
+            </c-modal-body>
+
+        </c-modal>
+    </div>

@@ -13,8 +13,23 @@ export class ServiciosService {
 
   constructor(private http: HttpClient) { }
 
-
   getServicio() {
-    return this.http.get<Servicio>(`${this.apiUrl}/${this.controllerUrl}/getServicio`);
+    return this.http.get<Servicio>(`${this.apiUrl}${this.controllerUrl}/getServicio`);
+  }
+
+  getServicioById(id: any) {
+    return this.http.post<Servicio>(`${this.apiUrl}${this.controllerUrl}/getServicioById`, id);
+  }
+
+  addServicio(ServicioData: any) {
+    return this.http.post(`${this.apiUrl}${this.controllerUrl}/insertServicio`, ServicioData);
+  }
+
+  updateServicio(ServicioData: any) {
+    return this.http.post<Servicio>(`${this.apiUrl}${this.controllerUrl}/updateServicio`, ServicioData);
+  }
+
+  deleteServicio(id: any) {
+    return this.http.post<Servicio>(`${this.apiUrl}${this.controllerUrl}/deleteServicio`, id);
   }
 }

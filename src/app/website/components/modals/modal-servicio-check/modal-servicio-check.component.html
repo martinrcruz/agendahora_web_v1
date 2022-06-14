@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="row">
+
+        <c-modal id="openModal" [visible]="visible" size="xl" (visibleChange)="handleModalChange($event)">
+            <c-modal-header>
+                <h5 cModalTitle>Agregar un servicio</h5>
+                <button (click)="openModal()" cButtonClose></button>
+            </c-modal-header>
+            <c-modal-body>
+
+                <!-- <div *ngIf="!servicioForm.valid" class="alert alert-danger" role="alert"> -->
+                <span [ngClass]="errorClass">
+                    <div class="container">
+                        <div class="row">
+                            <div class="text-center pb-4" style="color:red;">
+                                {{ errorMessage }}
+                            </div>
+                        </div>
+                    </div>
+                </span>
+                <!-- </div> -->
+
+                <div class="container-fluid">
+                    <div class="row">
+
+
+
+                        <form [formGroup]="servicioCheckForm" (ngSubmit)="checkServicio()">
+
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Nombre" type="text"
+                                                name="id_servicio" formControlName="id_servicio" [readonly]="true" />
+                                            <label cLabel for="floatingInput">Id servicio</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-10">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Nombre" type="text"
+                                                name="nombre" formControlName="nombre" />
+                                            <label cLabel for="floatingInput">Nombre</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Id Vehiculo" type="text"
+                                                name="id_vehiculo" formControlName="id_vehiculo" />
+                                            <label cLabel for="floatingInput">Id Vehiculo</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Id Tecnico" type="text"
+                                                name="id_tecnico" formControlName="id_tecnico" />
+                                            <label cLabel for="floatingInput">Id Tecnico</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Descripcion" type="text"
+                                                name="descripcion" formControlName="descripcion" />
+                                            <label cLabel for="floatingInput">Descripcion</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <c-modal-footer>
+
+                                <button cButton class="btn-enviar" type="submit"
+                                    [disabled]="servicioCheckForm.invalid">Agregar</button>
+
+                                <button (click)="openModal()" class="btn-cerrar" cButton>
+                                    Cerrar
+                                </button>
+                            </c-modal-footer>
+                        </form>
+
+
+
+                    </div>
+                </div>
+
+            </c-modal-body>
+
+        </c-modal>
+    </div>
+</div>

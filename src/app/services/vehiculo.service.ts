@@ -18,6 +18,13 @@ export class VehiculoService {
   getVehiculo() {
     return this.http.get<Vehiculo>(`${this.apiUrl}${this.controllerUrl}/getVehiculo`);
   }
+  getMarcasVehiculo(){
+    return this.http.get(`${this.apiUrl}/marca/getMarca`);
+  }
+
+  getModelosVehiculo(){
+    return this.http.get(`${this.apiUrl}/modelo/getModelo`);
+  }
 
   getVehiculoById(id: any) {
     return this.http.post<Vehiculo>(`${this.apiUrl}${this.controllerUrl}/getVehiculoById`, id);

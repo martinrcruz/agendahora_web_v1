@@ -20,7 +20,7 @@ import {
   DefaultFooterComponent,
   DefaultHeaderComponent,
   DefaultLayoutComponent,
-} from './containers';
+} from './website/containers';
 
 //Import angular
 import {
@@ -50,25 +50,42 @@ import { HttpClientModule } from '@angular/common/http';
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 
 //COMPONENTES 
-import { HomeComponent } from './pages/home/home.component';
-import { AgendaComponent } from './pages/agenda/agenda.component';
-import { HistorialAgendaComponent } from './pages/historial-agenda/historial-agenda.component';
-import { SolicitudVehiculoComponent } from './pages/solicitud-vehiculo/solicitud-vehiculo.component';
-import { SolicitudClienteComponent } from './pages/solicitud-cliente/solicitud-cliente.component';
-import { MensajeriaComponent } from './pages/mensajeria/mensajeria.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { TablaClienteComponent } from './components/tablas/tabla-cliente/tabla-cliente.component';
-import { ModalVehiculoAddComponent } from './components/modals/modal-vehiculo-add/modal-vehiculo-add.component';
-import { CalendarioComponent } from './components/calendario/calendario.component';
-import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
-import { ClienteComponent } from './pages/cliente/cliente.component';
-import { ServiciosComponent } from './pages/servicios/servicios.component';
-import { TablaServicioComponent } from './components/tablas/tabla-servicio/tabla-servicio.component';
+import { HomeComponent } from './website/pages/home/home.component';
+import { AgendaComponent } from './website/pages/agenda/agenda.component';
+import { HistorialAgendaComponent } from './website/pages/historial-agenda/historial-agenda.component';
+import { SolicitudVehiculoComponent } from './website/pages/solicitud-vehiculo/solicitud-vehiculo.component';
+import { SolicitudClienteComponent } from './website/pages/solicitud-cliente/solicitud-cliente.component';
+import { MensajeriaComponent } from './website/pages/mensajeria/mensajeria.component';
+import { ProfileComponent } from './website/pages/profile/profile.component';
+import { NotFoundComponent } from './website/pages/not-found/not-found.component';
+import { TablaClienteComponent } from './website/components/tablas/tabla-cliente/tabla-cliente.component';
+import { TablaHistorialServicioComponent } from './website/components/tablas/tabla-historial-servicio/tabla-historial-servicio.component';
+import { TablaSolicitudClienteComponent } from './website/components/tablas/tabla-solicitud-cliente/tabla-solicitud-cliente.component';
+import { TablaVehiculoComponent } from './website/components/tablas/tabla-vehiculo/tabla-vehiculo.component';
+import { TablaSolicitudVehiculoComponent } from './website/components/tablas/tabla-solicitud-vehiculo/tabla-solicitud-vehiculo.component';
+import { ModalVehiculoAddComponent } from './website/components/modals/modal-vehiculo-add/modal-vehiculo-add.component';
+import { CalendarioComponent } from './website/components/calendario/calendario.component';
+import { VehiculoComponent } from './website/pages/vehiculo/vehiculo.component';
+import { ClienteComponent } from './website/pages/cliente/cliente.component';
+import { ServiciosComponent } from './website/pages/servicios/servicios.component';
+import { TablaServicioComponent } from './website/components/tablas/tabla-servicio/tabla-servicio.component';
+import { ModalVehiculoEditComponent } from './website/components/modals/modal-vehiculo-edit/modal-vehiculo-edit.component';
+import { ModalServicioAddComponent } from './website/components/modals/modal-servicio-add/modal-servicio-add.component';
+import { ModalServicioCheckComponent } from './website/components/modals/modal-servicio-check/modal-servicio-check.component';
+import { ModalServicioEditComponent } from './website/components/modals/modal-servicio-edit/modal-servicio-edit.component';
+import { ForgotPasswordComponent } from './website/pages/auth/forgot-password/forgot-password.component';
+import { UsuariosComponent } from './website/pages/usuarios/usuarios.component';
+import { AjustesCuentaComponent } from './website/pages/ajustes-cuenta/ajustes-cuenta.component';
+import { LoginComponent } from './website/pages/auth/login/login.component';
+import { ModalClienteEditComponent } from './website/components/modals/modal-cliente-edit/modal-cliente-edit.component';
+import { ModalClienteAddComponent } from './website/components/modals/modal-cliente-add/modal-cliente-add.component';
+import { ModalSolicitudVehiculoAddComponent } from './website/components/modals/modal-solicitud-vehiculo-add/modal-solicitud-vehiculo-add.component';
+import { ModalSolicitudVehiculoEditComponent } from './website/components/modals/modal-solicitud-vehiculo-edit/modal-solicitud-vehiculo-edit.component';
+import { ModalHistorialServicioAddComponent } from './website/components/modals/modal-historial-servicio-add/modal-historial-servicio-add.component';
+import { ModalHistorialServicioEditComponent } from './website/components/modals/modal-historial-servicio-edit/modal-historial-servicio-edit.component';
 
-
+import { ModalSolicitudClienteAddComponent } from './website/components/modals/modal-solicitud-cliente-add/modal-solicitud-cliente-add.component';
+import { ModalSolicitudClienteEditComponent } from './website/components/modals/modal-solicitud-cliente-edit/modal-solicitud-cliente-edit.component';
 //[ANGULAR MATERIAL]
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -86,12 +103,10 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
-import { TablaHistorialServicioComponent } from './components/tablas/tabla-historial-servicio/tabla-historial-servicio.component';
-import { TablaSolicitudClienteComponent } from './components/tablas/tabla-solicitud-cliente/tabla-solicitud-cliente.component';
-import { TablaVehiculoComponent } from './components/tablas/tabla-vehiculo/tabla-vehiculo.component';
-import { TablaSolicitudVehiculoComponent } from './components/tablas/tabla-solicitud-vehiculo/tabla-solicitud-vehiculo.component';
+
 import { MatNativeDateModule } from '@angular/material/core';
-import { ModalVehiculoEditComponent } from './components/modals/modal-vehiculo-edit/modal-vehiculo-edit.component';
+
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin,
@@ -120,8 +135,6 @@ const APP_CONTAINERS = [
     SolicitudVehiculoComponent,
     SolicitudClienteComponent,
     MensajeriaComponent,
-    LoginComponent,
-    RegisterComponent,
     ProfileComponent,
     NotFoundComponent,
     CalendarioComponent,
@@ -135,7 +148,25 @@ const APP_CONTAINERS = [
     TablaVehiculoComponent,
     TablaSolicitudVehiculoComponent,
     ModalVehiculoAddComponent,
-    ModalVehiculoEditComponent],
+    ModalVehiculoEditComponent,
+    ModalServicioAddComponent,
+    ModalServicioCheckComponent,
+    ModalServicioEditComponent,
+    ForgotPasswordComponent,
+    UsuariosComponent,
+    AjustesCuentaComponent,
+    LoginComponent,
+    TablaVehiculoComponent,
+    TablaSolicitudVehiculoComponent,
+    ModalClienteEditComponent,
+    ModalClienteAddComponent,
+    ModalSolicitudVehiculoAddComponent,
+    ModalSolicitudVehiculoEditComponent,
+    ModalHistorialServicioAddComponent,
+    ModalHistorialServicioEditComponent,
+    ModalSolicitudClienteAddComponent,
+    ModalSolicitudClienteEditComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

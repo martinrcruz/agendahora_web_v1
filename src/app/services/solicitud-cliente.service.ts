@@ -19,5 +19,21 @@ export class SolicitudClienteService {
   getSolicitudCliente() {
     return this.http.get<SolicitudCliente>(`${this.apiUrl}${this.controllerUrl}/getSolicitudRegistro`);
   }
+
+  getSolicitudClienteById(id: any) {
+    return this.http.post<SolicitudCliente>(`${this.apiUrl}${this.controllerUrl}/getSolicitudRegistroById`, id);
+  }
+
+  addSolicitudCliente(SolicitudclienteData: any) {
+    return this.http.post(`${this.apiUrl}${this.controllerUrl}/insertSolicitudRegistro`, SolicitudclienteData);
+  }
+
+  updateSolicitudCliente(SolicitudclienteData: any) {
+    return this.http.post<SolicitudCliente>(`${this.apiUrl}${this.controllerUrl}/updateSolicitudRegistro`, SolicitudclienteData);
+  }
+
+  deleteSolicitudCliente(id_solicitud_cliente: any) {
+    return this.http.post<SolicitudCliente>(`${this.apiUrl}${this.controllerUrl}/deleteSolicitudRegistro`, id_solicitud_cliente);
+  }
 }
 

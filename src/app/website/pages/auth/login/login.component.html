@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="row">
+        <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+
+            <div class="container">
+                <div class="row">
+                    <img src="../../../../../assets/images/am-logo-no-background.png" alt="" class="logo">
+                </div>
+                <div class="row">
+                    <div class="col-6 offset-3">
+                        <div cFormFloating class="mb-3">
+                            <input cFormControl id="floatingInput" placeholder="identity" type="text" name="identity"
+                                formControlName="identity" />
+                            <label cLabel for="floatingInput">Correo</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 offset-3">
+                        <div cFormFloating class="mb-3">
+                            <input cFormControl id="floatingInput" placeholder="password" type="text" name="password"
+                                formControlName="password" />
+                            <label cLabel for="floatingInput">Contrasena</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button cButton class="btn-login" type="submit">Ingresar</button>
+            <br>
+            <a cButton class="btn-forgot" href="#/auth/forgot-password"> Olvidaste tu Contrasena?</a>
+        </form>
+
+
+
+    </div>
+</div>
