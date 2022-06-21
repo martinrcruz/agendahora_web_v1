@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ClienteService } from 'src/app/services/cliente.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 import { disposeEmitNodes } from 'typescript/lib/tsserverlibrary';
 import { TablaClienteComponent } from '../../tablas/tabla-cliente/tabla-cliente.component';
 
@@ -14,7 +14,7 @@ export class ModalClienteEditComponent implements OnInit {
 
   public visible = false;
 
-  constructor(private clienteService: ClienteService, private tablaCliente: TablaClienteComponent) { }
+  constructor(private usuarioService: UsuariosService, private tablaCliente: TablaClienteComponent) { }
 
   @Output() editedCliente = new EventEmitter<string>();
   @Output() refreshTable = new EventEmitter<string>();
@@ -25,41 +25,33 @@ export class ModalClienteEditComponent implements OnInit {
   editData: any;
 
   clienteForm = new FormGroup({
-    id_cliente: new FormControl({ disabled: true }),
-    correo: new FormControl('', Validators.required),
-    nombre: new FormControl('', Validators.required),
-    apellidop: new FormControl('', Validators.required),
-    apellidom: new FormControl('', Validators.required),
-    rut: new FormControl('', Validators.required),
-    numero_contacto: new FormControl('', Validators.required),
-    direccion: new FormControl('', Validators.required),
-    sucursal: new FormControl('', Validators.required),
-    nombre_usuario: new FormControl('', Validators.required),
+    id: new FormControl({ value: 'No aplica', disabled: true }),
+    email: new FormControl('', Validators.required),
+    first_name: new FormControl('', Validators.required),
+    last_name: new FormControl('', Validators.required),
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    password_confirm: new FormControl('', Validators.required),
   })
 
 
   ngOnInit(): void {
   }
 
-  loadData(id_cliente: any) {
+  loadData(id: any) {
     var formData: any = new FormData();
-    formData.append("id_cliente", id_cliente);
-    this.clienteService.getClienteById(formData)
+    formData.append("id", id);
+    this.usuarioService.getUsuarioById(formData)
       .subscribe({
         next: (res) => {
           this.editData = res;
           console.log(this.editData.data[0].nombre);
           this.clienteForm.setValue({
-            id_cliente: this.editData.data[0].id_cliente,
-            correo: this.editData.data[0].correo,
-            nombre: this.editData.data[0].nombre,
-            apellidop: this.editData.data[0].apellidop,
-            apellidom: this.editData.data[0].apellidom,
-            rut: this.editData.data[0].rut,
-            numero_contacto: this.editData.data[0].numero_contacto,
-            direccion: this.editData.data[0].direccion,
-            sucursal: this.editData.data[0].sucursal,
-            nombre_usuario: this.editData.data[0].nombre_usuario,
+            id: this.editData.data[0].id,
+            email: this.editData.data[0].email,
+            first_name: this.editData.data[0].first_name,
+            last_name: this.editData.data[0].last_name,
+            username: this.editData.data[0].username,
           })
           this.openModal()
 
@@ -73,23 +65,17 @@ export class ModalClienteEditComponent implements OnInit {
 
   updateCliente() {
     var formData: any = new FormData();
-    formData.append("id_cliente", this.clienteForm.get("id_cliente")?.value);
-    formData.append("correo", this.clienteForm.get("correo")?.value);
-    formData.append("nombre", this.clienteForm.get("nombre")?.value);
-    formData.append("apellidop", this.clienteForm.get("apellidop")?.value);
-    formData.append("apellidom", this.clienteForm.get("apellidom")?.value);
-    formData.append("rut", this.clienteForm.get("rut")?.value);
-    formData.append("numero_contacto", this.clienteForm.get("numero_contacto")?.value);
-    formData.append("direccion", this.clienteForm.get("direccion")?.value);
-    formData.append("sucursal", this.clienteForm.get("sucursal")?.value);
-    formData.append("nombre_usuario", this.clienteForm.get("nombre_usuario")?.value);
+    formData.append("id", this.clienteForm.get("id")?.value);
+    formData.append("email", this.clienteForm.get("email")?.value);
+    formData.append("first_name", this.clienteForm.get("first_name")?.value);
+    formData.append("last_name", this.clienteForm.get("last_name")?.value);
+    formData.append("username", this.clienteForm.get("username")?.value);
 
     if (this.clienteForm.valid) {
-      this.clienteService.updateCliente(formData)
+      this.usuarioService.addUsuario(formData)
         .subscribe({
           next: (res) => {
             this.saveResponse = res;
-            console.log(this.saveResponse)
             this.openModal()
             this.refreshTable.emit();
           },
@@ -98,20 +84,23 @@ export class ModalClienteEditComponent implements OnInit {
             this.saveResponse = err
           }
         })
+
+
+    } else {
+      this.errorMessage = 'Porfavor rellena todos los campos obligatorios.';
+      this.errorClass = "errorMessage";
     }
   }
 
   clearForm() {
     this.clienteForm.setValue({
-      correo: '',
-      nombre: '',
-      apellidop: '',
-      apellidom: '',
-      rut: '',
-      numero_contacto: '',
-      direccion: '',
-      sucursal: '',
-      nombre_usuario: '',
+      id: '',
+      email: '',
+      first_name: '',
+      last_name: '',
+      username: '',
+      password: '',
+      password_confirm: ''
     })
   }
 

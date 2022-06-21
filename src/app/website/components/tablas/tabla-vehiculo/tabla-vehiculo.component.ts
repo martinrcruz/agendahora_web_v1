@@ -1,4 +1,4 @@
-import {  Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -34,9 +34,8 @@ export class TablaVehiculoComponent implements OnInit {
   vehiculo: any = '';
 
   ngOnInit(): void {
-    this.getVehiculo();
+    this.getVehiculo(null);
     this.getSelectorMarca();
-    this.getSelectorModelo();
   }
 
   openModalAdd() {
@@ -50,8 +49,8 @@ export class TablaVehiculoComponent implements OnInit {
     })
   }
 
-  getVehiculo() {
-    this.vehiculoService.getVehiculo()
+  getVehiculo(filtroData: any | null | '') {
+    this.vehiculoService.getVehiculo(filtroData)
       .subscribe({
         next: (res) => {
           console.log(res)
@@ -70,11 +69,12 @@ export class TablaVehiculoComponent implements OnInit {
       })
   }
 
+
   updateVehiculo(id_vehiculo: any) {
     this.addView.loadData(id_vehiculo)
 
   }
-  
+
   deleteVehiculo(id_vehiculo: any) {
     var formData: any = new FormData();
     formData.append("id_vehiculo", id_vehiculo);
@@ -82,7 +82,7 @@ export class TablaVehiculoComponent implements OnInit {
       this.vehiculoService.deleteVehiculo(formData)
         .subscribe({
           next: (res) => {
-            this.getVehiculo()
+            this.getVehiculo(null)
           },
           error: (err) => {
             console.log(err)
@@ -92,9 +92,11 @@ export class TablaVehiculoComponent implements OnInit {
     }
   }
 
-  refreshTable(){
-    this.getVehiculo();
+  refreshTable() {
+    this.getVehiculo(null);
   }
+
+
 
   filtroData = new FormGroup({
     fecha_inicio_filtro: new FormControl(),
@@ -102,17 +104,18 @@ export class TablaVehiculoComponent implements OnInit {
     marca_filtro: new FormControl(),
     modelo_filtro: new FormControl(),
     version_filtro: new FormControl(),
-
   })
 
-  filtrarTabla() {
 
+  filtrarTabla() {
     var filtroData: any = new FormData();
+    filtroData.append("fecha_inicio_filtro", this.filtroData.get("fecha_inicio_filtro")?.value);
+    filtroData.append("fecha_fin_filtro", this.filtroData.get("fecha_fin_filtro")?.value);
     filtroData.append("marca_filtro", this.filtroData.get("marca_filtro")?.value);
     filtroData.append("modelo_filtro", this.filtroData.get("modelo_filtro")?.value);
-    filtroData.append("version_filtro", this.filtroData.get("version_filtro")?.value);
-    console.log(filtroData)
+    // filtroData.append("version_filtro", this.filtroData.get("version_filtro")?.value);
 
+    this.getVehiculo(filtroData)
   }
 
 
@@ -127,7 +130,7 @@ export class TablaVehiculoComponent implements OnInit {
 
 
 
-  getSelectorMarca(){
+  getSelectorMarca() {
     this.vehiculoService.getMarcasVehiculo()
       .subscribe({
         next: (res) => {
@@ -136,6 +139,11 @@ export class TablaVehiculoComponent implements OnInit {
           console.log(selectorMarcaData)
           this.selectorMarcaData = selectorMarcaData;
 
+
+          var marca = 'marca';
+
+          this.getSelectorModelo(marca);
+
         },
         error: (err) => {
           alert('Error fetching')
@@ -143,14 +151,15 @@ export class TablaVehiculoComponent implements OnInit {
       })
   }
 
-  getSelectorModelo(){
-    this.vehiculoService.getModelosVehiculo()
+  getSelectorModelo(marca: any) {
+
+    this.vehiculoService.getModelosVehiculo(marca)
       .subscribe({
         next: (res) => {
           var newData = Object.entries(res)
           const selectorModeloData = (newData[1][1])
           console.log(selectorModeloData)
-          this.selectorModeloData  = selectorModeloData;
+          this.selectorModeloData = selectorModeloData;
 
         },
         error: (err) => {

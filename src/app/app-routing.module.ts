@@ -9,7 +9,6 @@ import { HistorialAgendaComponent } from './website/pages/historial-agenda/histo
 import { SolicitudVehiculoComponent } from './website/pages/solicitud-vehiculo/solicitud-vehiculo.component';
 import { SolicitudClienteComponent } from './website/pages/solicitud-cliente/solicitud-cliente.component';
 import { MensajeriaComponent } from './website/pages/mensajeria/mensajeria.component';
-import { ProfileComponent } from './website/pages/profile/profile.component';
 import { NotFoundComponent } from './website/pages/not-found/not-found.component';
 import { ServiciosComponent } from './website/pages/servicios/servicios.component';
 import { ClienteComponent } from './website/pages/cliente/cliente.component';
@@ -18,6 +17,9 @@ import { LoginComponent } from './website/pages/auth/login/login.component'
 import { ForgotPasswordComponent } from './website/pages/auth/forgot-password/forgot-password.component';
 
 import { AuthGuard } from '../app/guards/auth.guard';
+import { UsuariosComponent } from './website/pages/usuarios/usuarios.component';
+import { PerfilComponent } from './website/pages/perfil/perfil.component';
+import { AjustesCuentaComponent } from './website/pages/ajustes-cuenta/ajustes-cuenta.component';
 
 const routes: Routes = [
   {
@@ -90,6 +92,19 @@ const routes: Routes = [
         path: 'auth/login',
         component: LoginComponent
       },
+      {
+        path: 'usuarios',
+        component: UsuariosComponent
+      },
+      {
+        path: 'perfil',
+        component: PerfilComponent
+      },
+      {
+        path: 'ajustes-cuenta',
+        component: AjustesCuentaComponent
+      }
+
 
 
     ]

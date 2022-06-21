@@ -56,7 +56,6 @@ import { HistorialAgendaComponent } from './website/pages/historial-agenda/histo
 import { SolicitudVehiculoComponent } from './website/pages/solicitud-vehiculo/solicitud-vehiculo.component';
 import { SolicitudClienteComponent } from './website/pages/solicitud-cliente/solicitud-cliente.component';
 import { MensajeriaComponent } from './website/pages/mensajeria/mensajeria.component';
-import { ProfileComponent } from './website/pages/profile/profile.component';
 import { NotFoundComponent } from './website/pages/not-found/not-found.component';
 import { TablaClienteComponent } from './website/components/tablas/tabla-cliente/tabla-cliente.component';
 import { TablaHistorialServicioComponent } from './website/components/tablas/tabla-historial-servicio/tabla-historial-servicio.component';
@@ -83,9 +82,17 @@ import { ModalSolicitudVehiculoAddComponent } from './website/components/modals/
 import { ModalSolicitudVehiculoEditComponent } from './website/components/modals/modal-solicitud-vehiculo-edit/modal-solicitud-vehiculo-edit.component';
 import { ModalHistorialServicioAddComponent } from './website/components/modals/modal-historial-servicio-add/modal-historial-servicio-add.component';
 import { ModalHistorialServicioEditComponent } from './website/components/modals/modal-historial-servicio-edit/modal-historial-servicio-edit.component';
-
 import { ModalSolicitudClienteAddComponent } from './website/components/modals/modal-solicitud-cliente-add/modal-solicitud-cliente-add.component';
 import { ModalSolicitudClienteEditComponent } from './website/components/modals/modal-solicitud-cliente-edit/modal-solicitud-cliente-edit.component';
+import { TablaUsuariosComponent } from './website/components/tablas/tabla-usuarios/tabla-usuarios.component';
+import { ModalUsuarioAddComponent } from './website/components/modals/modal-usuario-add/modal-usuario-add.component';
+import { ModalUsuarioEditComponent } from './website/components/modals/modal-usuario-edit/modal-usuario-edit.component';
+import { PerfilComponent } from './website/pages/perfil/perfil.component';
+import { ModalCalendarioAddComponent } from './website/components/modals/modal-calendario-add/modal-calendario-add.component';
+import { ModalCalendarioEditComponent } from './website/components/modals/modal-calendario-edit/modal-calendario-edit.component';
+
+
+
 //[ANGULAR MATERIAL]
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -105,6 +112,7 @@ import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 
 import { MatNativeDateModule } from '@angular/material/core';
+
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -135,7 +143,6 @@ const APP_CONTAINERS = [
     SolicitudVehiculoComponent,
     SolicitudClienteComponent,
     MensajeriaComponent,
-    ProfileComponent,
     NotFoundComponent,
     CalendarioComponent,
     VehiculoComponent,
@@ -165,7 +172,13 @@ const APP_CONTAINERS = [
     ModalHistorialServicioAddComponent,
     ModalHistorialServicioEditComponent,
     ModalSolicitudClienteAddComponent,
-    ModalSolicitudClienteEditComponent
+    ModalSolicitudClienteEditComponent,
+    TablaUsuariosComponent,
+    ModalUsuarioAddComponent,
+    ModalUsuarioEditComponent,
+    PerfilComponent,
+    ModalCalendarioAddComponent,
+    ModalCalendarioEditComponent
   ],
   imports: [
     BrowserModule,

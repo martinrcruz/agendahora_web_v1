@@ -15,14 +15,15 @@ export class VehiculoService {
   constructor(private http: HttpClient) { }
 
 
-  getVehiculo() {
+  getVehiculo(filtroData: any | null | '' = '') {
     return this.http.get<Vehiculo>(`${this.apiUrl}${this.controllerUrl}/getVehiculo`);
   }
+
   getMarcasVehiculo(){
     return this.http.get(`${this.apiUrl}/marca/getMarca`);
   }
 
-  getModelosVehiculo(){
+  getModelosVehiculo(marca: any){
     return this.http.get(`${this.apiUrl}/modelo/getModelo`);
   }
 

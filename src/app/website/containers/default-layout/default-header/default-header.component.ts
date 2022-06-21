@@ -25,4 +25,7 @@ export class DefaultHeaderComponent extends HeaderComponent {
   logout() {
     this.authService.logout();
   }
+
+
+  
 }

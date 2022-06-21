@@ -1,22 +1,18 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsuariosService } from 'src/app/services/usuarios.service';
-import { TablaClienteComponent } from '../../tablas/tabla-cliente/tabla-cliente.component';
-
-
 
 @Component({
-  selector: 'app-modal-cliente-add',
-  templateUrl: './modal-cliente-add.component.html',
-  styleUrls: ['./modal-cliente-add.component.scss'],
-
+  selector: 'app-modal-usuario-add',
+  templateUrl: './modal-usuario-add.component.html',
+  styleUrls: ['./modal-usuario-add.component.scss']
 })
-export class ModalClienteAddComponent implements OnInit {
+export class ModalUsuarioAddComponent implements OnInit {
 
   constructor(private usuarioService: UsuariosService) { }
 
 
-  @Output() onSubmited = new EventEmitter<string>();
+
   @Output() refreshTable = new EventEmitter<string>();
 
   
@@ -29,7 +25,7 @@ export class ModalClienteAddComponent implements OnInit {
   errorClass: string | any = '';
   saveResponse: any;
 
-  clienteForm = new FormGroup({
+  usuarioForm = new FormGroup({
     id: new FormControl({value: 'No aplica', disabled: true}),
     email: new FormControl('', Validators.required),
     first_name: new FormControl('', Validators.required),
@@ -37,20 +33,21 @@ export class ModalClienteAddComponent implements OnInit {
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
     password_confirm: new FormControl('', Validators.required),
+
   })
 
-  addCliente() {
+  addUsuario() {
     var formData: any = new FormData();
-    formData.append("id", this.clienteForm.get("id")?.value);
-    formData.append("email", this.clienteForm.get("email")?.value);
-    formData.append("first_name", this.clienteForm.get("first_name")?.value);
-    formData.append("last_name", this.clienteForm.get("last_name")?.value);
-    formData.append("username", this.clienteForm.get("username")?.value);
-    formData.append("password", this.clienteForm.get("password")?.value);
-    formData.append("password_confirm", this.clienteForm.get("password_confirm")?.value);
-    formData.append("grupo", 2);
+    formData.append("id", this.usuarioForm.get("id")?.value);
+    formData.append("email", this.usuarioForm.get("email")?.value);
+    formData.append("first_name", this.usuarioForm.get("first_name")?.value);
+    formData.append("last_name", this.usuarioForm.get("last_name")?.value);
+    formData.append("username", this.usuarioForm.get("username")?.value);
+    formData.append("password", this.usuarioForm.get("password")?.value);
+    formData.append("password_confirm", this.usuarioForm.get("password_confirm")?.value);
+    formData.append("grupo", 1);
 
-    if (this.clienteForm.valid) {
+    if (this.usuarioForm.valid) {
       this.usuarioService.addUsuario(formData)
         .subscribe({
           next: (res) => {
@@ -59,7 +56,7 @@ export class ModalClienteAddComponent implements OnInit {
             this.refreshTable.emit();
           },
           error: (err) => {
-            console.log(this.clienteForm.getRawValue())
+            console.log(this.usuarioForm.getRawValue())
             this.saveResponse = err
           }
         })
@@ -70,7 +67,18 @@ export class ModalClienteAddComponent implements OnInit {
       this.errorClass = "errorMessage";
     }
   }
-
+  
+  clearForm() {
+    this.usuarioForm.setValue({
+      id: '',
+      email: '',
+      first_name: '',
+      last_name: '',
+      username: '',
+      password: '',
+      password_confirm: ''
+    })
+  }
 
   openModal() {
     this.visible = !this.visible;
@@ -79,4 +87,5 @@ export class ModalClienteAddComponent implements OnInit {
   handleModalChange(event: any) {
     this.visible = event;
   }
+
 }

@@ -2,7 +2,7 @@ import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/cor
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ClienteService } from '../../../../services/cliente.service';
+import { UsuariosService } from '../../../../services/usuarios.service';
 import { ModalClienteAddComponent } from '../../modals/modal-cliente-add/modal-cliente-add.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatDateRangePicker, MatDateRangeInput, MatDatepicker } from '@angular/material/datepicker';
@@ -20,12 +20,12 @@ export class TablaClienteComponent implements OnInit {
   @ViewChild(MatSort) sort: any = MatSort;
 
 
-  constructor(private clienteService: ClienteService, private dialog: MatDialog) { }
+  constructor(private usuarioService: UsuariosService, private dialog: MatDialog) { }
 
 
   @ViewChild(ModalClienteEditComponent) addView!: ModalClienteEditComponent;
 
-  displayedColumns: string[] = ['id_cliente','correo', 'nombre', 'apellidop', 'apellidom', 'rut', 'numero_contacto', 'direccion', 'sucursal', 'nombre_usuario', 'editar', 'eliminar'];
+  displayedColumns: string[] = ['id', 'first_name', 'last_name', 'email', 'username', 'editar', 'eliminar'];
 
   dataSource: any
   public modal?: ModalClienteAddComponent
@@ -46,38 +46,38 @@ export class TablaClienteComponent implements OnInit {
     })
   }
   getCliente() {
-    this.clienteService.getCliente()
-      .subscribe({
-        next: (res) => {
-          console.log(res)
-          var newData = Object.entries(res)
-          const datos = (newData[1][1])
+    this.usuarioService.getCliente()
+    .subscribe({
+      next: (res) => {
+        console.log(res)
+        var newData = Object.entries(res)
+        const datos = (newData[1][1])
 
-          this.dataSource = new MatTableDataSource(datos);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
+        this.dataSource = new MatTableDataSource(datos);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
 
-          console.log(this.dataSource)
-        },
-        error: (err) => {
-          alert('Error fetching')
-        }
-      })
+        console.log(this.dataSource)
+      },
+      error: (err) => {
+        alert('Error fetching')
+      }
+    })
   }
-  updateCliente(id_cliente: any) {
-    this.addView.loadData(id_cliente)
+  updateCliente(id: any) {
+    this.addView.loadData(id)
 
   }
   refreshTable(){
     this.getCliente();
   }
 
-  deleteCliente(id_cliente: any) {
+  deleteCliente(id: any) {
     var formData: any = new FormData();
-    formData.append("id_cliente", id_cliente);
+    formData.append("id", id);
 
     if (confirm('remove?')) {
-      this.clienteService.deleteCliente(formData)
+      this.usuarioService.deleteUsuario(formData)
         .subscribe({
           next: (res) => {
             this.getCliente()

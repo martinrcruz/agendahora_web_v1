@@ -38,8 +38,10 @@
                         <div class="col-2">
                             <p>Selecciona una marca: </p>
                             <select aria-label="Large select example" cSelect class="mb-3" sizing="lg"
-                                name="marca_filtro" id="floatingInput" formControlName="marca_filtro" >
-                                <option *ngFor="let datoMarca of selectorMarcaData" value="{{datoMarca.id_marca}}">{{datoMarca.nombre}}</option>
+                                name="marca_filtro" id="marca_filtro" formControlName="marca_filtro" >
+
+                             <option *ngFor="let datoMarca of selectorMarcaData" value="{{datoMarca.id_marca}}">{{datoMarca.nombre}}</option>
+                            
                             </select>
                         </div>
 

@@ -72,6 +72,11 @@ export const navItems: INavData[] = [
     ]
   },
   {
+    name: 'Usuarios',
+    url: '/usuarios',
+    iconComponent: { name: 'cil-group' }
+  },
+  {
     name: 'Mensajeria',
     url: '/mensajeria',
     iconComponent: { name: 'cil-chat-bubble' }

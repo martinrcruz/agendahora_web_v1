@@ -1,0 +1,132 @@
+<div class="container">
+    <div class="row">
+ 
+
+        <c-modal id="openModal" [visible]="visible"  size="xl" (visibleChange)="handleModalChange($event)">
+            <c-modal-header>
+                <h5 cModalTitle>Editar horario</h5>
+                <button (click)="openModal()" cButtonClose></button>
+            </c-modal-header>
+            <c-modal-body>
+
+                <!-- <div *ngIf="!calendarioForm.valid" class="alert alert-danger" role="alert"> -->
+                <span [ngClass]="errorClass">
+                    <div class="container">
+                        <div class="row">
+                            <div class="text-center pb-4" style="color:red;">
+                                {{ errorMessage }}
+
+                            </div>
+                        </div>
+                    </div>
+                </span>
+                <!-- </div> -->
+
+                <div class="container-fluid">
+                    <div class="row">
+
+
+                        <form [formGroup]="calendarioForm" (ngSubmit)="updateCalendario()">
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Id hora agenda" type="text"
+                                                name="id_hora_agenda" formControlName="id_hora_agenda" [readonly]="true" />
+                                            <label cLabel for="floatingInput">Id Hora Agenda</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Id Servicio " type="text"
+                                                name="id_servicio" formControlName="id_servicio" />
+                                            <label cLabel for="floatingInput">Id Servicio </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="nombre " type="text"
+                                                name="nombre" formControlName="nombre" />
+                                            <label cLabel for="floatingInput">nombre </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Descripcion " type="text"
+                                                name="descripcion" formControlName="descripcion" />
+                                            <label cLabel for="floatingInput">Descripcion </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Fecha de Entrada" type="date"
+                                                name="fecha_entrada" formControlName="fecha_entrada" />
+                                            <label cLabel for="floatingInput">Fecha de Entrada</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Fecha de Salida" type="date"
+                                                name="fecha_salida" formControlName="fecha_salida" />
+                                            <label cLabel for="floatingInput">Fecha de Salida </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Id Usuario Tecnico" type="text"
+                                                name="id_usuario_tecnico" formControlName="id_usuario_tecnico" />
+                                            <label cLabel for="floatingInput">Id Usuario Tecnico</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Id Cliente" type="text"
+                                                name="id_cliente" formControlName="id_cliente" />
+                                            <label cLabel for="floatingInput">Id Cliente</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Id Vehiculo" type="text"
+                                                name="id_vehiculo" formControlName="id_vehiculo" />
+                                            <label cLabel for="floatingInput">Id Vehiculo</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div cFormFloating class="mb-3">
+                                            <input cFormControl id="floatingInput" placeholder="Id Usuario Cargo" type="text"
+                                                name="id_usuario_cargo" formControlName="id_usuario_cargo" />
+                                            <label cLabel for="floatingInput">Id Usuario Cargo</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <c-modal-footer>
+                                <button cButton class="btn-enviar" (click)=deleteCalendario() type="button">Eliminar
+                            </button>
+                                <button cButton class="btn-enviar"  type="submit"
+                                    [disabled]="calendarioForm.invalid">Editar
+                            </button>
+
+                                <button (click)="openModal()" class="btn-cerrar" cButton>
+                                    Cerrar
+                                </button>
+                            </c-modal-footer>
+                        </form>
+
+
+
+
+                    </div>
+                </div>
+
+            </c-modal-body>
+
+        </c-modal>
+    </div>

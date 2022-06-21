@@ -1,16 +1,16 @@
 <div class="container">
     <div class="row">
         <button (click)="openModal()" cButton class="openModalButton"><i class="fa-solid fa-plus"></i> Agregar
-            Cliente</button>
+            Usuario</button>
 
         <c-modal id="openModal" [visible]="visible" size="xl" (visibleChange)="handleModalChange($event)">
             <c-modal-header>
-                <h5 cModalTitle>Agregar un Cliente</h5>
+                <h5 cModalTitle>Agregar un Usuario</h5>
                 <button (click)="openModal()" cButtonClose></button>
             </c-modal-header>
             <c-modal-body>
 
-                <!-- <div *ngIf="!clienteForm.valid" class="alert alert-danger" role="alert"> -->
+                <!-- <div *ngIf="!vehiculoForm.valid" class="alert alert-danger" role="alert"> -->
                 <span [ngClass]="errorClass">
                     <div class="container">
                         <div class="row">
@@ -27,7 +27,7 @@
 
 
 
-                        <form [formGroup]="clienteForm" (ngSubmit)="addCliente()">
+                        <form [formGroup]="usuarioForm" (ngSubmit)="addUsuario()">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-2">
@@ -98,7 +98,7 @@
                             <c-modal-footer>
 
                                 <button cButton class="btn-enviar" type="submit"
-                                    [disabled]="clienteForm.invalid">Agregar</button>
+                                    [disabled]="usuarioForm.invalid">Agregar</button>
 
                                 <button (click)="openModal()" class="btn-cerrar" cButton>
                                     Cerrar
