@@ -1,9 +1,10 @@
 <div class="container">
     <div class="row">
 
-        <c-modal id="openModal" [visible]="visible" size="xl" (visibleChange)="handleModalChange($event)">
+
+        <c-modal id="openModal" [visible]="visible" size="lg" (visibleChange)="handleModalChange($event)">
             <c-modal-header>
-                <h5 cModalTitle>Agregar un servicio</h5>
+                <h5 cModalTitle>Modal title</h5>
                 <button (click)="openModal()" cButtonClose></button>
             </c-modal-header>
             <c-modal-body>
@@ -14,6 +15,7 @@
                         <div class="row">
                             <div class="text-center pb-4" style="color:red;">
                                 {{ errorMessage }}
+
                             </div>
                         </div>
                     </div>
@@ -26,60 +28,186 @@
 
 
                         <form [formGroup]="servicioCheckForm" (ngSubmit)="checkServicio()">
-
-
                             <div class="container">
                                 <div class="row">
                                     <div class="col-2">
-                                        <div cFormFloating class="mb-3">
+                                        <p style="color:black;">Estado</p>
+                                    </div>
+                                    <div class="col-10">
+                                        <select aria-label="Large select example" cSelect class="mb-3" sizing="md"
+                                            name="estado_servicio" id="floatingInput" formControlName="estado_servicio">
+                                            <option value="1">1.- Por confirmar </option>
+                                            <option value="2">2.- Ingresado </option>
+                                            <option value="3">3.- En proceso </option>
+                                            <option value="4">4.- Completado </option>
+                                            <option value="5">5.- Con problemas </option>
+                                            <option value="6">6.- Cancelado </option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput" style="color:black">Id servicio</label>
+
                                             <input cFormControl id="floatingInput" placeholder="Nombre" type="text"
                                                 name="id_servicio" formControlName="id_servicio" [readonly]="true" />
-                                            <label cLabel for="floatingInput">Id servicio</label>
                                         </div>
                                     </div>
 
-                                    <div class="col-10">
-                                        <div cFormFloating class="mb-3">
+                                    <div class="col-9">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput" style="color:black">Nombre</label>
                                             <input cFormControl id="floatingInput" placeholder="Nombre" type="text"
                                                 name="nombre" formControlName="nombre" />
-                                            <label cLabel for="floatingInput">Nombre</label>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput" style="color:black">Fecha Agenda:
+                                            </label>
+                                            <input cFormControl id="floatingInput" placeholder="Fecha de agenda"
+                                                type="text" name="fecha_agenda" formControlName="fecha_agenda" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput" style="color:black">Fecha entrada:
+                                            </label>
+                                            <input cFormControl id="floatingInput" placeholder="Fecha entrada"
+                                                type="text" name="fecha_entrada" formControlName="fecha_entrada" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel style="color:black; ">Fecha salida: </label>
+                                            <input cFormControl id="floatingInput" placeholder="Fecha salida"
+                                                type="text" name="fecha_salida" formControlName="fecha_salida" />
                                         </div>
                                     </div>
                                 </div>
 
 
                                 <div class="row">
-                                    <div class="col-4">
-                                        <div cFormFloating class="mb-3">
+                                    <div class="col-2">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput" style="color:black">Id
+                                                Vehiculo</label>
                                             <input cFormControl id="floatingInput" placeholder="Id Vehiculo" type="text"
                                                 name="id_vehiculo" formControlName="id_vehiculo" />
-                                            <label cLabel for="floatingInput">Id Vehiculo</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel style="color:black; ">Marca</label>
+
+                                            <input cFormControl id="floatingInput" placeholder="Marca" type="text"
+                                                name="marca" formControlName="marca" />
                                         </div>
                                     </div>
                                     <div class="col-4">
-                                        <div cFormFloating class="mb-3">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel style="color:black; ">Modelo</label>
+                                            <input cFormControl id="floatingInput" placeholder="Modelo" type="text"
+                                                name="modelo" formControlName="modelo" />
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel style="color:black; ">Version</label>
+
+                                            <input cFormControl id="floatingInput" placeholder="Version" type="text"
+                                                name="version" formControlName="version" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+
+                                    <div class="col-2">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel style="color:black; ">Id Tecnico</label>
+
                                             <input cFormControl id="floatingInput" placeholder="Id Tecnico" type="text"
                                                 name="id_tecnico" formControlName="id_tecnico" />
-                                            <label cLabel for="floatingInput">Id Tecnico</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel style="color:black; ">Nombre Tecnico</label>
+
+                                            <input cFormControl id="floatingInput" placeholder="Nombre Tecnico"
+                                                type="text" name="nombre_tecnico" formControlName="nombre_tecnico" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-2">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel style="color:black; ">Id Cliente</label>
+
+                                            <input cFormControl id="floatingInput" placeholder="Id Cliente" type="text"
+                                                name="id_cliente" formControlName="id_cliente" />
+                                        </div>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel style="color:black; ">Nombre Cliente</label>
+
+                                            <input cFormControl id="floatingInput" placeholder="Nombre Cliente"
+                                                type="text" name="nombre_cliente" formControlName="nombre_cliente" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="descripcion" style="color:black">Descripcion</label>
+                                            <textarea cFormControl [ngStyle]="{ 'height.px': 70 }" id="descripcion"
+                                                formControlName="descripcion" name="descripcion">
+                                                  </textarea>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-12">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Descripcion" type="text"
-                                                name="descripcion" formControlName="descripcion" />
-                                            <label cLabel for="floatingInput">Descripcion</label>
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="detalles" style="color:black">Detalles</label>
+                                            <textarea [ngStyle]="{ 'height.px': 120 }" cFormControl id="floatingInput"
+                                                formControlName="detalles" name="detalles">
+                                                  </textarea>
                                         </div>
                                     </div>
-
                                 </div>
+
+
+
+
+
+
+
                             </div>
+
+
+
                             <c-modal-footer>
 
                                 <button cButton class="btn-enviar" type="submit"
-                                    [disabled]="servicioCheckForm.invalid">Agregar</button>
+                                    [disabled]="servicioCheckForm.invalid">Editar</button>
 
                                 <button (click)="openModal()" class="btn-cerrar" cButton>
                                     Cerrar

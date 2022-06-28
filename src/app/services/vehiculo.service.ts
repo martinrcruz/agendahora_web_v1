@@ -19,12 +19,20 @@ export class VehiculoService {
     return this.http.get<Vehiculo>(`${this.apiUrl}${this.controllerUrl}/getVehiculo`);
   }
 
-  getMarcasVehiculo(){
+  getVehiculoTabla(filtroData: any) {
+    return this.http.post(`${this.apiUrl}${this.controllerUrl}/getVehiculoTabla`, filtroData);
+  }
+
+  getMarcasVehiculo() {
     return this.http.get(`${this.apiUrl}/marca/getMarca`);
   }
 
-  getModelosVehiculo(marca: any){
-    return this.http.get(`${this.apiUrl}/modelo/getModelo`);
+  getModelosVehiculo(id_marca: number) {
+    return this.http.get(`${this.apiUrl}/modelo/getModelo/` + id_marca);
+  }
+
+  getVersionVehiculo(id_version: any){
+    return this.http.get(`${this.apiUrl}/version/getVersion/` + id_version);
   }
 
   getVehiculoById(id: any) {

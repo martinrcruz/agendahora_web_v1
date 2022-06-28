@@ -20,6 +20,8 @@ export class ModalVehiculoEditComponent implements OnInit {
   @Output() refreshTable = new EventEmitter<string>();
 
   errorMessage: string = '';
+  selectorMarcaData: any
+  selectorModeloData: any
   errorClass: string | any = '';
   saveResponse: any;
   editData: any;
@@ -37,6 +39,10 @@ export class ModalVehiculoEditComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getSelectorMarca();
+
+
+
   }
 
   loadData(id_vehiculo: any) {
@@ -47,7 +53,7 @@ export class ModalVehiculoEditComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.editData = res;
-          console.log(this.editData.data[0].nombre);
+          console.log(this.editData.data[0].marca);
           this.vehiculoForm.setValue({
             id_vehiculo: this.editData.data[0].id_vehiculo,
             nombre: this.editData.data[0].nombre,
@@ -58,6 +64,8 @@ export class ModalVehiculoEditComponent implements OnInit {
             id_cliente: this.editData.data[0].id_cliente,
             color: this.editData.data[0].color,
           })
+          this.getSelectorModelo(this.editData.data[0].marca);
+
           this.openModal()
 
         },
@@ -99,6 +107,46 @@ export class ModalVehiculoEditComponent implements OnInit {
     }
     this.refreshTable.emit();
   }
+
+
+  getSelectorMarca() {
+    this.vehiculoService.getMarcasVehiculo()
+      .subscribe({
+        next: (res) => {
+          var newData = Object.entries(res)
+          const selectorMarcaData = (newData[1][1])
+          console.log(selectorMarcaData)
+          this.selectorMarcaData = selectorMarcaData;
+
+        },
+        error: (err) => {
+          alert('Error fetching')
+        }
+      })
+  }
+  
+  change(event: any) {
+    this.getSelectorModelo(event.target.value);
+  }
+
+  getSelectorModelo(id: any) {
+
+    this.vehiculoService.getModelosVehiculo(id)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          var newData = Object.entries(res)
+          const selectorModeloData = (newData[1][1])
+          console.log(selectorModeloData)
+          this.selectorModeloData = selectorModeloData;
+
+        },
+        error: (err) => {
+          alert('Error fetching')
+        }
+      })
+  }
+
 
   clearForm() {
     this.vehiculoForm.setValue({

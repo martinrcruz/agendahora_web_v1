@@ -16,6 +16,9 @@ export class ServiciosService {
   getServicio() {
     return this.http.get<Servicio>(`${this.apiUrl}${this.controllerUrl}/getServicio`);
   }
+  getServicioTabla(filtroData: any | null | '' = '') {
+    return this.http.post(`${this.apiUrl}${this.controllerUrl}/getServicioTabla`, filtroData);
+  }
 
   getServicioById(id: any) {
     return this.http.post<Servicio>(`${this.apiUrl}${this.controllerUrl}/getServicioById`, id);
@@ -26,7 +29,11 @@ export class ServiciosService {
   }
 
   updateServicio(ServicioData: any) {
-    return this.http.post<Servicio>(`${this.apiUrl}${this.controllerUrl}/updateServicio`, ServicioData);
+    return this.http.post(`${this.apiUrl}${this.controllerUrl}/updateServicio`, ServicioData);
+  }
+  
+  updateServicioState(ServicioData: any) {
+    return this.http.post(`${this.apiUrl}${this.controllerUrl}/updateServicioState`, ServicioData);
   }
 
   deleteServicio(id: any) {

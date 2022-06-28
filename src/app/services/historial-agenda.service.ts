@@ -9,29 +9,32 @@ export class HistorialAgendaService {
 
 
   private apiUrl: string = environment.apiUrl;
-  private controllerUrl: string = 'historial_agenda';
+  private controllerUrl: string = 'historial_servicio';
 
 
   constructor(private http: HttpClient) { }
 
   getHistorialAgenda() {
-    return this.http.get(`${this.apiUrl}${this.controllerUrl}/getHistorialAgenda`);
+    return this.http.get(`${this.apiUrl}${this.controllerUrl}/getHistorialServicio`);
+  }
+  getHistorialAgendaTabla(filtroData: any | null | '' = '') {
+    return this.http.post(`${this.apiUrl}${this.controllerUrl}/getHistorialServicioTabla`, filtroData);
   }
 
   getHistorialAgendaById(id: any) {
-    return this.http.post(`${this.apiUrl}${this.controllerUrl}/getHistorialAgendaById`, id);
+    return this.http.post(`${this.apiUrl}${this.controllerUrl}/getHistorialServicioById`, id);
   }
 
   addHistorialAgenda(historialAgendaData: any) {
-    return this.http.post(`${this.apiUrl}${this.controllerUrl}/insertHistorialAgenda`, historialAgendaData);
+    return this.http.post(`${this.apiUrl}${this.controllerUrl}/insertHistorialServicio`, historialAgendaData);
   }
 
   updateHistorialAgenda(historialAgendaData: any) {
-    return this.http.post(`${this.apiUrl}${this.controllerUrl}/updateHistorialAgenda`, historialAgendaData);
+    return this.http.post(`${this.apiUrl}${this.controllerUrl}/updateHistorialServicio`, historialAgendaData);
   }
 
   deleteHistorialAgenda(id_historial_agenda: any) {
-    return this.http.post(`${this.apiUrl}${this.controllerUrl}/deleteHistorialAgenda`, id_historial_agenda);
+    return this.http.post(`${this.apiUrl}${this.controllerUrl}/deleteHistorialServicio`, id_historial_agenda);
   }
 
 

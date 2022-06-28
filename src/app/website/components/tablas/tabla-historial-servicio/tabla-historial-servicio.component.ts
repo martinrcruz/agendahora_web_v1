@@ -8,6 +8,9 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatDateRangePicker, MatDateRangeInput, MatDatepicker } from '@angular/material/datepicker';
 import { ModalHistorialServicioEditComponent } from '../../modals/modal-historial-servicio-edit/modal-historial-servicio-edit.component';
 import { FormControl, FormGroup } from '@angular/forms';
+import Swal from 'sweetalert2'
+import { VehiculoService } from 'src/app/services/vehiculo.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 
 @Component({
@@ -17,39 +20,52 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class TablaHistorialServicioComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator: any = MatPaginator;
-  @ViewChild(MatSort) sort: any = MatSort;
-
-  constructor(private historialAgendaService: HistorialAgendaService, private dialog: MatDialog) { }
-
-
-  @ViewChild(ModalHistorialServicioEditComponent) addView!: ModalHistorialServicioEditComponent;
-
-  displayedColumns: string[] = ['nombre', 'descripcion', 'fecha_entrada', 'fecha_salida', 'id_usuario_cargo', 'id_cliente', 'id_usuario_tecnico', 'editar', 'eliminar'];
+  displayedColumns: string[] = ['nombre', 'descripcion', 'nombre_cliente', 'id_vehiculo', 'marca', 'modelo', 'version', 'nombre_tecnico', 'fecha_entrada', 'fecha_salida', 'estado_servicio', 'detalle'];
 
   dataSource: any
+  selectorMarcaData: any
+  selectorModeloData: any
+  selectorVersionData: any
+  selectorTecnicoData: any
+  selectorEstadoData: any
+
+  @ViewChild(MatPaginator) paginator: any = MatPaginator;
+  @ViewChild(MatSort) sort: any = MatSort;
+  @ViewChild(ModalHistorialServicioEditComponent) addView!: ModalHistorialServicioEditComponent;
   public modal?: ModalHistorialServicioAddComponent
   historialServicio: any = '';
 
+
+  constructor(
+    private historialAgendaService: HistorialAgendaService,
+    private dialog: MatDialog,
+    private vehiculoService: VehiculoService,
+    private usuarioService: UsuariosService
+  ) { }
+
+
+
   ngOnInit(): void {
-    this.getHistorialServicio();
+    this.getHistorialServicio(null);
+    this.getSelectorMarca();
+    this.getSelectorTecnico();
   }
 
-  
-  openModalAdd() {
-    this.dialog.open(ModalHistorialServicioAddComponent, {
-      width: '100%',
-    })
-  }
-  openModalEdit() {
-    this.dialog.open(ModalHistorialServicioEditComponent, {
-      width: '100%',
-    })
+
+
+  // openModalEdit() {
+  //   this.dialog.open(ModalHistorialServicioEditComponent, {
+  //     width: '100%',
+  //   })
+  // }
+  verDetalle(id: any) {
+    this.addView.loadData(id)
+
   }
 
-  
-  getHistorialServicio() {
-    this.historialAgendaService.getHistorialAgenda()
+
+  getHistorialServicio(filtroData: any | null | '') {
+    this.historialAgendaService.getHistorialAgendaTabla(filtroData)
       .subscribe({
         next: (res) => {
           console.log(res)
@@ -68,58 +84,77 @@ export class TablaHistorialServicioComponent implements OnInit {
       })
   }
 
-
-  updateHistorialServicio(id_historial_servicio: any) {
-    this.addView.loadData(id_historial_servicio)
-
+  refreshTable() {
+    this.getHistorialServicio(null);
   }
-  refreshTable(){
-    this.getHistorialServicio();
-  }
-
-  deleteHistorialServicio(id_historial_servicio: any) {
-    var formData: any = new FormData();
-    formData.append("id_historial_servicio", id_historial_servicio);
-
-
-
-
-    
-    if (confirm('remove?')) {
-      this.historialAgendaService.deleteHistorialAgenda(formData)
-        .subscribe({
-          next: (res) => {
-            this.getHistorialServicio()
-          },
-          error: (err) => {
-            console.log(err)
-            alert('Error deleting')
-          }
-        })
-    }
-  }
-
-
-
-
 
   filtroData = new FormGroup({
     fecha_inicio_filtro: new FormControl(),
     fecha_fin_filtro: new FormControl(),
+    fecha_agenda_filtro: new FormControl(),
+    tecnico_filtro: new FormControl(),
     marca_filtro: new FormControl(),
     modelo_filtro: new FormControl(),
     version_filtro: new FormControl(),
+    estado_servicio: new FormControl(),
 
   })
+
+  limpiarFiltro() {
+    this.filtroData.setValue({
+      fecha_inicio_filtro: '',
+      fecha_fin_filtro: '',
+      fecha_agenda_filtro: '',
+      tecnico_filtro: '',
+      marca_filtro: '',
+      modelo_filtro: '',
+      version_filtro: '',
+      estado_servicio: '',
+    })
+    this.getHistorialServicio(null);
+  }
+
 
   filtrarTabla() {
 
     var filtroData: any = new FormData();
 
-    filtroData.append("marca_filtro", this.filtroData.get("marca_filtro")?.value);
-    filtroData.append("modelo_filtro", this.filtroData.get("modelo_filtro")?.value);
-    filtroData.append("version_filtro", this.filtroData.get("version_filtro")?.value);
+    if (this.filtroData.get("fecha_inicio_filtro")?.value) {
+      var fechaInicio = new Date(this.filtroData.get("fecha_inicio_filtro")?.value);
+      var fecha_inicio = ('0' + (fechaInicio.getDate())).slice(-2) + '-' + ('0' + (fechaInicio.getMonth() + 1)).slice(-2) + '-' + fechaInicio.getFullYear()
+
+      var fecha_inicio_truncated = fechaInicio.getFullYear() + '-' + ('0' + (fechaInicio.getMonth() + 1)).slice(-2) + '-' + ('0' + (fechaInicio.getDate())).slice(-2)
+
+      filtroData.append("fecha_inicio", fecha_inicio_truncated);
+    }
+
+    if (this.filtroData.get("fecha_fin_filtro")?.value) {
+      var fechaFin = new Date(this.filtroData.get("fecha_fin_filtro")?.value);
+      var fecha_fin = ('0' + (fechaFin.getDate())).slice(-2) + '-' + ('0' + (fechaFin.getMonth() + 1)).slice(-2) + '-' + fechaFin.getFullYear()
+
+      var fecha_fin_truncated = fechaFin.getFullYear() + '-' + ('0' + (fechaFin.getMonth() + 1)).slice(-2) + '-' + ('0' + (fechaFin.getDate())).slice(-2)
+
+      filtroData.append("fecha_fin", fecha_fin_truncated);
+    }
+
+    if (this.filtroData.get("fecha_agenda_filtro")?.value) {
+      var fechaAgenda = new Date(this.filtroData.get("fecha_agenda_filtro")?.value);
+      var fecha_agenda = ('0' + (fechaAgenda.getDate())).slice(-2) + '-' + ('0' + (fechaAgenda.getMonth() + 1)).slice(-2) + '-' + fechaAgenda.getFullYear()
+
+      var fecha_agenda_truncated = fechaAgenda.getFullYear() + '-' + ('0' + (fechaAgenda.getMonth() + 1)).slice(-2) + '-' + ('0' + (fechaAgenda.getDate())).slice(-2)
+
+      filtroData.append("fecha_agenda", fecha_agenda_truncated);
+    }
+
+
+    filtroData.append("tecnico", this.filtroData.get("tecnico_filtro")?.value);
+    filtroData.append("marca", this.filtroData.get("marca_filtro")?.value);
+    filtroData.append("modelo", this.filtroData.get("modelo_filtro")?.value);
+    filtroData.append("version", this.filtroData.get("version_filtro")?.value);
+    filtroData.append("estado_servicio", this.filtroData.get("estado_servicio")?.value);
+
     console.log(filtroData)
+    this.getHistorialServicio(filtroData)
 
   }
 
@@ -132,5 +167,87 @@ export class TablaHistorialServicioComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  getSelectorTecnico() {
+    this.usuarioService.getTecnicos()
+      .subscribe({
+        next: (res) => {
+          var newData = Object.entries(res)
+          const selectorTecnicoData = (newData[1][1])
+          console.log(selectorTecnicoData)
+          this.selectorTecnicoData = selectorTecnicoData;
+
+        },
+        error: (err) => {
+          alert('Error fetching')
+        }
+      })
+  }
+
+
+  getSelectorMarca() {
+    this.vehiculoService.getMarcasVehiculo()
+      .subscribe({
+        next: (res) => {
+          var newData = Object.entries(res)
+          const selectorMarcaData = (newData[1][1])
+          console.log(selectorMarcaData)
+          this.selectorMarcaData = selectorMarcaData;
+
+        },
+        error: (err) => {
+          alert('Error fetching')
+        }
+      })
+  }
+
+  changeMarca(event: any) {
+    this.getSelectorModelo(event.target.value);
+  }
+
+  getSelectorModelo(id: any) {
+
+    this.vehiculoService.getModelosVehiculo(id)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          var newData = Object.entries(res)
+          const selectorModeloData = (newData[1][1])
+          console.log(selectorModeloData)
+          this.selectorModeloData = selectorModeloData;
+
+        },
+        error: (err) => {
+          alert('Error fetching')
+        }
+      })
+  }
+
+  changeVersion(event: any) {
+    this.getSelectorVersion(event.target.value);
+  }
+
+  getSelectorVersion(id: any) {
+
+    this.vehiculoService.getVersionVehiculo(id)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          var newData = Object.entries(res)
+          const selectorVersionData = (newData[1][1])
+          console.log(selectorVersionData)
+          this.selectorVersionData = selectorVersionData;
+
+        },
+        error: (err) => {
+          alert('Error fetching')
+        }
+      })
+  }
+
+
+
+
+
 }
 

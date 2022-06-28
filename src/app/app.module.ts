@@ -90,8 +90,17 @@ import { ModalUsuarioEditComponent } from './website/components/modals/modal-usu
 import { PerfilComponent } from './website/pages/perfil/perfil.component';
 import { ModalCalendarioAddComponent } from './website/components/modals/modal-calendario-add/modal-calendario-add.component';
 import { ModalCalendarioEditComponent } from './website/components/modals/modal-calendario-edit/modal-calendario-edit.component';
+import { TablaAgendaComponent } from './website/components/tablas/tabla-agenda/tabla-agenda.component';
+import { ModalAgendaCheckComponent } from './website/components/modals/modal-agenda-check/modal-agenda-check.component';
+import { MarcaComponent } from './website/pages/marca/marca.component';
+import { ModeloComponent } from './website/pages/modelo/modelo.component';
+import { VersionComponent } from './website/pages/version/version.component';
 
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { Grafico1Component } from './website/components/graficos/grafico1/grafico1.component';
+import { Grafico2Component } from './website/components/graficos/grafico2/grafico2.component';
+import { Grafico3Component } from './website/components/graficos/grafico3/grafico3.component';
+import { ChartjsModule } from '@coreui/angular-chartjs';
 
 //[ANGULAR MATERIAL]
 import { MatTableModule } from '@angular/material/table';
@@ -111,7 +120,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 
 
@@ -178,8 +187,16 @@ const APP_CONTAINERS = [
     ModalUsuarioEditComponent,
     PerfilComponent,
     ModalCalendarioAddComponent,
-    ModalCalendarioEditComponent
-  ],
+    ModalCalendarioEditComponent,
+    Grafico1Component,
+    Grafico2Component,
+    Grafico3Component,
+    TablaAgendaComponent,
+    ModalAgendaCheckComponent,
+    MarcaComponent,
+    ModeloComponent,
+    VersionComponent
+    ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -218,7 +235,9 @@ const APP_CONTAINERS = [
     ModalModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    SweetAlert2Module,
+    ChartjsModule
   ],
   providers: [
     {
@@ -228,6 +247,9 @@ const APP_CONTAINERS = [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+    },
+    {
+      provide: MAT_DATE_LOCALE, useValue: 'es-ES'
     },
     IconSetService,
     Title

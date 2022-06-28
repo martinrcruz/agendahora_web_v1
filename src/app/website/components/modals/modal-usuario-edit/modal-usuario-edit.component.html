@@ -30,50 +30,57 @@
                         <form [formGroup]="usuarioForm" (ngSubmit)="updateUsuario()">
                             <div class="container">
                                 <div class="row">
+                                    <div class="col-12 text-center">
+                                        <img src="../../../../../assets/img/avatars/user.png" alt="" srcset=""
+                                            style="height: 150px; width:165px;justify-content: center;">
+                                    </div>
+                                </div>
+                                <br><br>
+                                <div class="row">
                                     <div class="col-2">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Nombre" type="text"
-                                                name="id" formControlName="id" [readonly]="true" />
+                                        <div class="mb-3" style="text-align: justify;">
                                             <label cLabel for="floatingInput">Id</label>
+                                            <div class="mb-3" style="text-align: justify;">
+                                                <input cFormControl id="floatingInput" placeholder="Nombre" type="text"
+                                                    name="id" formControlName="id" [readonly]="true" />
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-10">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Email" type="text"
-                                                name="email" formControlName="email" />
-                                            <label cLabel for="floatingInput">Email</label>
+                                    <div class="col-5">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Nombre</label>
+                                            <input cFormControl id="floatingInput" placeholder="First name" type="text"
+                                                name="first_name" formControlName="first_name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Apellido</label>
+                                            <input cFormControl id="floatingInput" placeholder="Last name" type="text"
+                                                name="last_name" formControlName="last_name" />
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-4">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="First name" type="text"
-                                                name="first_name" formControlName="first_name" />
-                                            <label cLabel for="floatingInput">First name</label>
+                                    <div class="col-6">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Correo electronico</label>
+                                            <input cFormControl id="floatingInput" placeholder="Email" type="text"
+                                                name="email" formControlName="email" />
                                         </div>
                                     </div>
-                                    <div class="col-4">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Last name" type="text"
-                                                name="last_name" formControlName="last_name" />
-                                            <label cLabel for="floatingInput">Last name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div cFormFloating class="mb-3">
+                                    <div class="col-6">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Nombre de usuario</label>
                                             <input cFormControl id="floatingInput" placeholder="Username" type="text"
                                                 name="username" formControlName="username" />
-                                            <label cLabel for="floatingInput">Username</label>
                                         </div>
                                     </div>
-
                                 </div>
-
-             
-                            </div>
+            
+                            </div><br><br>
 
 
                             <c-modal-footer>

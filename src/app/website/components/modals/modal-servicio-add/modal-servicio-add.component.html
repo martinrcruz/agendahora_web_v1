@@ -3,7 +3,7 @@
         <button (click)="openModal()" cButton class="openModalButton"><i class="fa-solid fa-plus"></i> Agregar
             Servicio</button>
 
-        <c-modal id="openModal" [visible]="visible" size="xl" (visibleChange)="handleModalChange($event)">
+        <c-modal id="openModal" [visible]="visible" size="lg" (visibleChange)="handleModalChange($event)">
             <c-modal-header>
                 <h5 cModalTitle>Agregar un Servicio</h5>
                 <button (click)="openModal()" cButtonClose></button>

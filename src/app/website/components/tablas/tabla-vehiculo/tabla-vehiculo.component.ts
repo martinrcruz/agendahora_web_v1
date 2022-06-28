@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,6 +8,7 @@ import { ModalVehiculoAddComponent } from '../../modals/modal-vehiculo-add/modal
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModalVehiculoEditComponent } from '../../modals/modal-vehiculo-edit/modal-vehiculo-edit.component';
 import { FormControl, FormGroup } from '@angular/forms';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-tabla-vehiculo',
@@ -25,11 +27,12 @@ export class TablaVehiculoComponent implements OnInit {
   @ViewChild(ModalVehiculoEditComponent) addView!: ModalVehiculoEditComponent;
 
 
-  displayedColumns: string[] = ['nombre', 'marca', 'modelo', 'version', 'patente', 'id_cliente', 'color', 'editar', 'eliminar'];
+  displayedColumns: string[] = ['nombre', 'marca', 'modelo', 'version', 'patente', 'id_cliente', 'nombre_cliente', 'color', 'editar', 'eliminar'];
 
   dataSource: any
   selectorMarcaData: any
   selectorModeloData: any
+  selectorVersionData: any
   public modal?: ModalVehiculoAddComponent
   vehiculo: any = '';
 
@@ -50,7 +53,7 @@ export class TablaVehiculoComponent implements OnInit {
   }
 
   getVehiculo(filtroData: any | null | '') {
-    this.vehiculoService.getVehiculo(filtroData)
+    this.vehiculoService.getVehiculoTabla(filtroData)
       .subscribe({
         next: (res) => {
           console.log(res)
@@ -78,18 +81,33 @@ export class TablaVehiculoComponent implements OnInit {
   deleteVehiculo(id_vehiculo: any) {
     var formData: any = new FormData();
     formData.append("id_vehiculo", id_vehiculo);
-    if (confirm('remove?')) {
-      this.vehiculoService.deleteVehiculo(formData)
-        .subscribe({
-          next: (res) => {
-            this.getVehiculo(null)
-          },
-          error: (err) => {
-            console.log(err)
-            alert('Error deleting')
-          }
-        })
-    }
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: 'Deseas eliminar el vehiculo?',
+      icon: 'error',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.vehiculoService.deleteVehiculo(formData)
+          .subscribe({
+            next: (res) => {
+              this.getVehiculo(null)
+            },
+            error: (err) => {
+              console.log(err)
+              alert('Error deleting')
+            }
+          })
+        Swal.fire('Eliminado con exito!', '', 'success')
+
+      } else if (result.isDenied || result.isDismissed) {
+        Swal.fire('El vehiculo no fue eliminado.', '', 'info')
+
+      }
+    })
   }
 
   refreshTable() {
@@ -109,13 +127,41 @@ export class TablaVehiculoComponent implements OnInit {
 
   filtrarTabla() {
     var filtroData: any = new FormData();
-    filtroData.append("fecha_inicio_filtro", this.filtroData.get("fecha_inicio_filtro")?.value);
-    filtroData.append("fecha_fin_filtro", this.filtroData.get("fecha_fin_filtro")?.value);
-    filtroData.append("marca_filtro", this.filtroData.get("marca_filtro")?.value);
-    filtroData.append("modelo_filtro", this.filtroData.get("modelo_filtro")?.value);
-    // filtroData.append("version_filtro", this.filtroData.get("version_filtro")?.value);
 
+    if (this.filtroData.get("fecha_inicio_filtro")?.value) {
+      var fechaInicio = new Date(this.filtroData.get("fecha_inicio_filtro")?.value);
+      var fecha_inicio = ('0' + (fechaInicio.getDate())).slice(-2) + '-' + ('0' + (fechaInicio.getMonth() + 1)).slice(-2) + '-' + fechaInicio.getFullYear()
+
+      var fecha_inicio_truncated = fechaInicio.getFullYear() + '-' + ('0' + (fechaInicio.getMonth() + 1)).slice(-2) + '-' + ('0' + (fechaInicio.getDate())).slice(-2)
+
+      filtroData.append("fecha_inicio", fecha_inicio_truncated);
+    }
+
+    if (this.filtroData.get("fecha_fin_filtro")?.value) {
+      var fechaFin = new Date(this.filtroData.get("fecha_fin_filtro")?.value);
+      var fecha_fin = ('0' + (fechaFin.getDate())).slice(-2) + '-' + ('0' + (fechaFin.getMonth() + 1)).slice(-2) + '-' + fechaFin.getFullYear()
+
+      var fecha_fin_truncated = fechaFin.getFullYear() + '-' + ('0' + (fechaFin.getMonth() + 1)).slice(-2) + '-' + ('0' + (fechaFin.getDate())).slice(-2)
+
+      filtroData.append("fecha_fin", fecha_fin_truncated);
+    }
+
+    filtroData.append("marca", this.filtroData.get("marca_filtro")?.value);
+    filtroData.append("modelo", this.filtroData.get("modelo_filtro")?.value);
+    filtroData.append("version", this.filtroData.get("version_filtro")?.value);
+    console.log(filtroData)
     this.getVehiculo(filtroData)
+  }
+
+  limpiarFiltro() {
+    this.filtroData.setValue({
+      fecha_inicio_filtro: '',
+      fecha_fin_filtro: '',
+      marca_filtro: '',
+      modelo_filtro: '',
+      version_filtro: '',
+    })
+    this.getVehiculo(null);
   }
 
 
@@ -139,10 +185,27 @@ export class TablaVehiculoComponent implements OnInit {
           console.log(selectorMarcaData)
           this.selectorMarcaData = selectorMarcaData;
 
+        },
+        error: (err) => {
+          alert('Error fetching')
+        }
+      })
+  }
 
-          var marca = 'marca';
+  changeMarca(event: any) {
+    this.getSelectorModelo(event.target.value);
+  }
 
-          this.getSelectorModelo(marca);
+  getSelectorModelo(id: any) {
+
+    this.vehiculoService.getModelosVehiculo(id)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          var newData = Object.entries(res)
+          const selectorModeloData = (newData[1][1])
+          console.log(selectorModeloData)
+          this.selectorModeloData = selectorModeloData;
 
         },
         error: (err) => {
@@ -151,15 +214,20 @@ export class TablaVehiculoComponent implements OnInit {
       })
   }
 
-  getSelectorModelo(marca: any) {
+  changeVersion(event: any) {
+    this.getSelectorVersion(event.target.value);
+  }
 
-    this.vehiculoService.getModelosVehiculo(marca)
+  getSelectorVersion(id: any) {
+
+    this.vehiculoService.getVersionVehiculo(id)
       .subscribe({
         next: (res) => {
+          console.log(res);
           var newData = Object.entries(res)
-          const selectorModeloData = (newData[1][1])
-          console.log(selectorModeloData)
-          this.selectorModeloData = selectorModeloData;
+          const selectorVersionData = (newData[1][1])
+          console.log(selectorVersionData)
+          this.selectorVersionData = selectorVersionData;
 
         },
         error: (err) => {

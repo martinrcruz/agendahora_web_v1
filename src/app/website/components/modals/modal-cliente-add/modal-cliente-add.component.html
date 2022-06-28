@@ -3,7 +3,7 @@
         <button (click)="openModal()" cButton class="openModalButton"><i class="fa-solid fa-plus"></i> Agregar
             Cliente</button>
 
-        <c-modal id="openModal" [visible]="visible" size="xl" (visibleChange)="handleModalChange($event)">
+        <c-modal id="openModal" [visible]="visible" size="lg" (visibleChange)="handleModalChange($event)">
             <c-modal-header>
                 <h5 cModalTitle>Agregar un Cliente</h5>
                 <button (click)="openModal()" cButtonClose></button>
@@ -30,68 +30,77 @@
                         <form [formGroup]="clienteForm" (ngSubmit)="addCliente()">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-2">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Nombre" type="text"
-                                                name="id" formControlName="id" [readonly]="true" />
-                                            <label cLabel for="floatingInput">Id</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Email" type="text"
-                                                name="email" formControlName="email" />
-                                            <label cLabel for="floatingInput">Email</label>
-                                        </div>
+                                    <div class="col-12 text-center">
+                                        <img src="../../../../../assets/img/avatars/user.png" alt="" srcset=""
+                                            style="height: 150px; width:165px;justify-content: center;">
                                     </div>
                                 </div>
-
+                                <br><br>
                                 <div class="row">
-                                    <div class="col-4">
-                                        <div cFormFloating class="mb-3">
+                                    <div class="col-2">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Id</label>
+                                            <div class="mb-3" style="text-align: justify;">
+                                                <input cFormControl id="floatingInput" placeholder="Nombre" type="text"
+                                                    name="id" formControlName="id" [readonly]="true" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-5">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Nombre</label>
                                             <input cFormControl id="floatingInput" placeholder="First name" type="text"
                                                 name="first_name" formControlName="first_name" />
-                                            <label cLabel for="floatingInput">First name</label>
                                         </div>
                                     </div>
-                                    <div class="col-4">
-                                        <div cFormFloating class="mb-3">
+                                    <div class="col-5">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Apellido</label>
                                             <input cFormControl id="floatingInput" placeholder="Last name" type="text"
                                                 name="last_name" formControlName="last_name" />
-                                            <label cLabel for="floatingInput">Last name</label>
                                         </div>
                                     </div>
-                                    <div class="col-4">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Username" type="text"
-                                                name="username" formControlName="username" />
-                                            <label cLabel for="floatingInput">Username</label>
-                                        </div>
-                                    </div>
-
                                 </div>
-                                
+
                                 <div class="row">
                                     <div class="col-6">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Password" type="text"
-                                                name="password" formControlName="password" />
-                                            <label cLabel for="floatingInput">Password</label>
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Correo electronico</label>
+                                            <input cFormControl id="floatingInput" placeholder="Email" type="text"
+                                                name="email" formControlName="email" />
                                         </div>
                                     </div>
                                     <div class="col-6">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Confirm password" type="text"
-                                                name="password_confirm" formControlName="password_confirm" />
-                                            <label cLabel for="floatingInput">Confirm password</label>
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Nombre de usuario</label>
+                                            <input cFormControl id="floatingInput" placeholder="Username" type="text"
+                                                name="username" formControlName="username" />
                                         </div>
                                     </div>
-                         
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Contrasena</label>
+                                            <input cFormControl id="floatingInput" placeholder="Password" type="text"
+                                                name="password" formControlName="password" />
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Confirme Contrasena</label>
+                                            <input cFormControl id="floatingInput" placeholder="Confirm password"
+                                                type="text" name="password_confirm"
+                                                formControlName="password_confirm" />
+                                        </div>
+                                    </div>
+
 
                                 </div>
 
-             
+
                             </div>
 
 

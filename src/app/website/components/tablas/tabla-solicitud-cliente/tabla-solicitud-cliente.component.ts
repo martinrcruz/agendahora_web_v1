@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatDateRangePicker, MatDateRangeInput, MatDatepicker } from '@angular/material/datepicker';
 import { ModalSolicitudClienteEditComponent } from '../../modals/modal-solicitud-cliente-edit/modal-solicitud-cliente-edit.component';
 import { FormControl, FormGroup } from '@angular/forms';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-tabla-solicitud-cliente',
@@ -77,11 +78,17 @@ export class TablaSolicitudClienteComponent implements OnInit {
     formData.append("id_solicitud_registro", id_solicitud_cliente);
 
 
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: 'Deseas eliminar la solicitud?',
+      icon: 'error',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
 
-
-  
-    if (confirm('remove?')) {
-      this.solicitudClienteService.deleteSolicitudCliente(formData)
+        this.solicitudClienteService.deleteSolicitudCliente(formData)
         .subscribe({
           next: (res) => {
             this.getSolicitudCliente()
@@ -91,8 +98,16 @@ export class TablaSolicitudClienteComponent implements OnInit {
             alert('Error deleting')
           }
         })
-    }
+        Swal.fire('Eliminado con exito!', '', 'success')
+
+      } else if (result.isDenied || result.isDismissed) {
+        Swal.fire('La solicitud no fue eliminado.', '', 'info')
+      }
+    })
   }
+
+
+  
   filtroData = new FormGroup({
     fecha_inicio_filtro: new FormControl(),
     fecha_fin_filtro: new FormControl(),

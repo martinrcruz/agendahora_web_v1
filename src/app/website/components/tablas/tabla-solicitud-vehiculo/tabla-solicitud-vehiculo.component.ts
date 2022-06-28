@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatDateRangePicker, MatDateRangeInput, MatDatepicker } from '@angular/material/datepicker';
 import { ModalSolicitudVehiculoEditComponent } from '../../modals/modal-solicitud-vehiculo-edit/modal-solicitud-vehiculo-edit.component';
 import { FormControl, FormGroup } from '@angular/forms';
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -27,9 +28,9 @@ export class TablaSolicitudVehiculoComponent implements OnInit {
 
   @ViewChild(ModalSolicitudVehiculoEditComponent) addView!: ModalSolicitudVehiculoEditComponent;
 
-  
 
-  displayedColumns: string[] = ['id_marca','modelo','ano','patente','version','ano_compra','sucursal_compra','nro_chasis','nro_motor','img_1','img_2','img_3','id_usuario_gestor','id_cliente', 'editar', 'eliminar'];
+
+  displayedColumns: string[] = ['id_marca', 'modelo', 'ano', 'patente', 'version', 'ano_compra', 'sucursal_compra', 'nro_chasis', 'nro_motor', 'img_1', 'img_2', 'img_3', 'id_usuario_gestor', 'id_cliente', 'editar', 'eliminar'];
 
   dataSource: any
   public modal?: ModalSolicitudVehiculoAddComponent
@@ -75,7 +76,7 @@ export class TablaSolicitudVehiculoComponent implements OnInit {
     this.addView.loadData(id_solicitud_vehiculo)
 
   }
-  refreshTable(){
+  refreshTable() {
     this.getSolicitudVehiculo();
   }
 
@@ -85,10 +86,17 @@ export class TablaSolicitudVehiculoComponent implements OnInit {
 
 
 
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: 'Deseas eliminar la solicitud?',
+      icon: 'error',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
 
-    
-    if (confirm('remove?')) {
-      this.solicitudVehiculoService.deleteSolicitudVehiculo(formData)
+        this.solicitudVehiculoService.deleteSolicitudVehiculo(formData)
         .subscribe({
           next: (res) => {
             this.getSolicitudVehiculo()
@@ -98,7 +106,14 @@ export class TablaSolicitudVehiculoComponent implements OnInit {
             alert('Error deleting')
           }
         })
-    }
+        Swal.fire('Eliminado con exito!', '', 'success')
+
+      } else if (result.isDenied || result.isDismissed) {
+        Swal.fire('La solicitud no fue eliminado.', '', 'info')
+      }
+    })
+
+
   }
 
 

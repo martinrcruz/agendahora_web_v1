@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgendaComponent implements OnInit {
 
+  load: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.initCalendar()
   }
+
+  initCalendar(): any {
+    this.load = true
+  }
+
+
 
 }

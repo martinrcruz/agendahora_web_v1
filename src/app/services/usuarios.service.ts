@@ -17,11 +17,14 @@ export class UsuariosService {
   }
   getCliente(){
     return this.http.get(`${this.apiUrl}${this.controllerUrl}/getCliente`);
-
   }
 
   getUsuarioById(id: any) {
     return this.http.post(`${this.apiUrl}${this.controllerUrl}/getUsuarioById`, id);
+  }
+
+  getClienteById(id: any) {
+    return this.http.post(`${this.apiUrl}${this.controllerUrl}/getClienteById`, id);
   }
 
   addUsuario(usuarioData: any) {
@@ -34,5 +37,11 @@ export class UsuariosService {
 
   deleteUsuario(id_usuario: any) {
     return this.http.post(`${this.apiUrl}${this.controllerUrl}/deleteUsuario`, id_usuario);
+  }
+
+
+  getTecnicos(){
+    return this.http.get(`${this.apiUrl}${this.controllerUrl}/getTecnicos`);
+
   }
 }

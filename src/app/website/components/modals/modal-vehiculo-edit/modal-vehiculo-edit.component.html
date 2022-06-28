@@ -2,7 +2,7 @@
     <div class="row">
  
 
-        <c-modal id="openModal" [visible]="visible"  size="xl" (visibleChange)="handleModalChange($event)">
+        <c-modal id="openModal" [visible]="visible"  size="lg" (visibleChange)="handleModalChange($event)">
             <c-modal-header>
                 <h5 cModalTitle>Modal title</h5>
                 <button (click)="openModal()" cButtonClose></button>
@@ -30,98 +30,146 @@
                         <form [formGroup]="vehiculoForm" (ngSubmit)="updateVehiculo()">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-2">
-                                        <div cFormFloating class="mb-3">
+                                    <div class="col-3">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Id Vehiculo</label>
                                             <input cFormControl id="floatingInput" placeholder="Nombre" type="text"
                                                 name="id_vehiculo" formControlName="id_vehiculo" [readonly]="true" />
-                                            <label cLabel for="floatingInput">Id Vehiculo</label>
                                         </div>
                                     </div>
 
-                                    <div class="col-10">
-                                        <div cFormFloating class="mb-3">
+                                    <div class="col-9">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Nombre</label>
                                             <input cFormControl id="floatingInput" placeholder="Nombre" type="text"
                                                 name="nombre" formControlName="nombre" />
-                                            <label cLabel for="floatingInput">Nombre</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-4">
-                                        <div cFormFloating class="mb-3">
+                                    <div class="col-12">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Cliente</label>
+                                            <input cFormControl id="floatingInput" placeholder="Id Cliente" type="text"
+                                                name="id_cliente" formControlName="id_cliente" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Marca</label>
                                             <select aria-label="Large select example" cSelect class="mb-3" sizing="lg"
                                                 placeholder="Marca" name="marca" id="floatingInput"
-                                                formControlName="marca">
-                                                <option>Selecciona una Marca</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                formControlName="marca" (change)="change($event)">
+                                                <option *ngFor="let datoMarca of selectorMarcaData"
+                                                    value="{{datoMarca.id_marca}}">{{datoMarca.nombre}}</option>
+
                                             </select>
-                                            <label cLabel for="floatingInput">Marca</label>
 
                                         </div>
 
 
                                     </div>
-                                    <div class="col-4">
-                                        <div cFormFloating class="mb-3">
+                                    <div class="col-5">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Modelo</label>
                                             <select aria-label="Large select example" cSelect class="mb-3" sizing="lg"
                                                 placeholder="Modelo" name="modelo" id="floatingInput"
                                                 formControlName="modelo">
-                                                <option>Selecciona un Modelo</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <option *ngFor="let datoModelo of selectorModeloData"
+                                                    value="{{datoModelo.id_modelo}}">{{datoModelo.nombre}}</option>
+
                                             </select>
-                                            <label cLabel for="floatingInput">Modelo</label>
                                         </div>
 
                                     </div>
 
                                     <div class="col-4">
-                                        <div cFormFloating class="mb-3">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Version</label>
                                             <select aria-label="Large select example" cSelect class="mb-3" sizing="lg"
                                                 placeholder="Version" name="version" id="floatingInput"
                                                 formControlName="version">
                                                 <option>Selecciona una Version</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
                                             </select>
-                                            <label cLabel for="floatingInput">Version</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-7">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Patente</label>
+                                            <input cFormControl id="floatingInput" placeholder="Patente" type="text"
+                                                name="patente" formControlName="patente" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-5">
+                                        <label cLabel for="floatingInput">Color</label>
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <input cFormControl id="floatingInput" placeholder="Color" type="color"
+                                                name="color" style=" width: 100%;" formControlName="color" />
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-4">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Patente" type="text"
+                                    <div class="col-6">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Nro Chasis</label>
+                                            <input cFormControl id="floatingInput" placeholder="Nro Chasis" type="text"
                                                 name="patente" formControlName="patente" />
-                                            <label cLabel for="floatingInput">Patente</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Id Cliente" type="text"
-                                                name="id_cliente" formControlName="id_cliente" />
-                                            <label cLabel for="floatingInput">Id Cliente</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Color" type="color"
-                                                name="color" style="padding-left: 100%; width: 100%;" formControlName="color" />
                                         </div>
                                     </div>
 
+                                    <div class="col-6">
+                                        <label cLabel for="floatingInput">Nro Motor</label>
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <input cFormControl id="floatingInput" placeholder="Nro Motor" type="text"
+                                                name="patente" formControlName="patente" />
+                                        </div>
+                                    </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">IMG 1</label>
+                                            <input cFormControl id="floatingInput" placeholder="IMG 1" type="text"
+                                                name="patente" formControlName="patente" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label cLabel for="floatingInput">IMG 2</label>
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <input cFormControl id="floatingInput" placeholder="IMG 2" type="text"
+                                                name="patente" formControlName="patente" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label cLabel for="floatingInput">IMG 3</label>
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <input cFormControl id="floatingInput" placeholder="IMG 3" type="text"
+                                                name="patente" formControlName="patente" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
 
 
                             <c-modal-footer>
-
+                             
                                 <button cButton class="btn-enviar" type="submit"
                                     [disabled]="vehiculoForm.invalid">Editar</button>
 

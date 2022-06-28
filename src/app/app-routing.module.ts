@@ -20,6 +20,9 @@ import { AuthGuard } from '../app/guards/auth.guard';
 import { UsuariosComponent } from './website/pages/usuarios/usuarios.component';
 import { PerfilComponent } from './website/pages/perfil/perfil.component';
 import { AjustesCuentaComponent } from './website/pages/ajustes-cuenta/ajustes-cuenta.component';
+import { MarcaComponent } from './website/pages/marca/marca.component';
+import { ModeloComponent } from './website/pages/modelo/modelo.component';
+import { VersionComponent } from './website/pages/version/version.component';
 
 const routes: Routes = [
   {
@@ -75,13 +78,24 @@ const routes: Routes = [
         component: ClienteComponent
       },
       {
-        path: 'solicitud-cliente',
-        component: SolicitudClienteComponent
-      },
-      {
         path: 'vehiculo',
         canActivate: [AuthGuard],
         component: VehiculoComponent
+      },
+      {
+        path: 'marca',
+        canActivate: [AuthGuard],
+        component: MarcaComponent
+      },
+      {
+        path: 'modelo',
+        canActivate: [AuthGuard],
+        component: ModeloComponent
+      },
+      {
+        path: 'version',
+        canActivate: [AuthGuard],
+        component: VersionComponent
       },
       {
         path: 'solicitud-vehiculo',
@@ -94,14 +108,12 @@ const routes: Routes = [
       },
       {
         path: 'usuarios',
+        canActivate: [AuthGuard],
         component: UsuariosComponent
       },
       {
-        path: 'perfil',
-        component: PerfilComponent
-      },
-      {
         path: 'ajustes-cuenta',
+        canActivate: [AuthGuard],
         component: AjustesCuentaComponent
       }
 

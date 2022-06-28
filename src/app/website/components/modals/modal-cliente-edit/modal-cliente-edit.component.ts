@@ -25,13 +25,12 @@ export class ModalClienteEditComponent implements OnInit {
   editData: any;
 
   clienteForm = new FormGroup({
-    id: new FormControl({ value: 'No aplica', disabled: true }),
+    id: new FormControl({disabled: true }),
     email: new FormControl('', Validators.required),
     first_name: new FormControl('', Validators.required),
     last_name: new FormControl('', Validators.required),
     username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-    password_confirm: new FormControl('', Validators.required),
+
   })
 
 
@@ -41,11 +40,10 @@ export class ModalClienteEditComponent implements OnInit {
   loadData(id: any) {
     var formData: any = new FormData();
     formData.append("id", id);
-    this.usuarioService.getUsuarioById(formData)
+    this.usuarioService.getClienteById(formData)
       .subscribe({
         next: (res) => {
           this.editData = res;
-          console.log(this.editData.data[0].nombre);
           this.clienteForm.setValue({
             id: this.editData.data[0].id,
             email: this.editData.data[0].email,

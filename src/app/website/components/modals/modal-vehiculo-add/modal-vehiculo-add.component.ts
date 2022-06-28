@@ -18,22 +18,25 @@ export class ModalVehiculoAddComponent implements OnInit {
 
   @Output() refreshTable = new EventEmitter<string>();
 
-  
+
   ngOnInit(): void {
+    this.getSelectorMarca();
   }
 
   public visible = false;
-
+  selectorMarcaData: any
+  selectorModeloData: any
+  selectorVersionData: any
   errorMessage: string = '';
   errorClass: string | any = '';
   saveResponse: any;
 
   vehiculoForm = new FormGroup({
-    id_vehiculo: new FormControl({value: 'No aplica', disabled: true}),
+    id_vehiculo: new FormControl({ value: 'No aplica', disabled: true }),
     nombre: new FormControl('', Validators.required),
     marca: new FormControl('', Validators.required),
     modelo: new FormControl('', Validators.required),
-    version: new FormControl('', Validators.required),
+    version: new FormControl(),
     patente: new FormControl('', Validators.required),
     id_cliente: new FormControl('', Validators.required),
     color: new FormControl('', Validators.required),
@@ -70,6 +73,68 @@ export class ModalVehiculoAddComponent implements OnInit {
       this.errorClass = "errorMessage";
     }
   }
+
+
+  getSelectorMarca() {
+    this.vehiculoService.getMarcasVehiculo()
+      .subscribe({
+        next: (res) => {
+          var newData = Object.entries(res)
+          const selectorMarcaData = (newData[1][1])
+          console.log(selectorMarcaData)
+          this.selectorMarcaData = selectorMarcaData;
+
+        },
+        error: (err) => {
+          alert('Error fetching')
+        }
+      })
+  }
+
+  changeMarca(event: any) {
+    this.getSelectorModelo(event.target.value);
+  }
+
+  getSelectorModelo(id: any) {
+
+    this.vehiculoService.getModelosVehiculo(id)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          var newData = Object.entries(res)
+          const selectorModeloData = (newData[1][1])
+          console.log(selectorModeloData)
+          this.selectorModeloData = selectorModeloData;
+
+        },
+        error: (err) => {
+          alert('Error fetching')
+        }
+      })
+  }
+
+  changeVersion(event: any) {
+    this.getSelectorVersion(event.target.value);
+  }
+
+  getSelectorVersion(id: any) {
+
+    this.vehiculoService.getVersionVehiculo(id)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          var newData = Object.entries(res)
+          const selectorVersionData = (newData[1][1])
+          console.log(selectorVersionData)
+          this.selectorVersionData = selectorVersionData;
+
+        },
+        error: (err) => {
+          alert('Error fetching')
+        }
+      })
+  }
+
 
 
   openModal() {

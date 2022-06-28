@@ -14,3 +14,7 @@
     border-radius: 10px !important;
     height: 98%;
 }
+.fc-scroller.fc-day-grid-container {
+    overflow: auto !important;
+    height: auto !important;
+  }

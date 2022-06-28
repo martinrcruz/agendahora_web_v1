@@ -28,8 +28,19 @@ export class ModalServicioEditComponent implements OnInit {
     id_servicio: new FormControl({ disabled: true }),
     nombre: new FormControl('', Validators.required),
     descripcion: new FormControl('', Validators.required),
+    detalles: new FormControl('', Validators.required),
+    nombre_cliente: new FormControl('', Validators.required),
+    id_cliente: new FormControl('', Validators.required),
     id_vehiculo: new FormControl('', Validators.required),
+    nombre_tecnico: new FormControl('', Validators.required),
     id_tecnico: new FormControl('', Validators.required),
+    fecha_entrada: new FormControl('', Validators.required),
+    fecha_salida: new FormControl('', Validators.required),
+    fecha_agenda: new FormControl('', Validators.required),
+    marca: new FormControl('', Validators.required),
+    modelo: new FormControl('', Validators.required),
+    version: new FormControl('', Validators.required),
+
   })
 
 
@@ -43,13 +54,24 @@ export class ModalServicioEditComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.editData = res;
-          console.log(this.editData.data[0].nombre);
           this.servicioForm.setValue({
             id_servicio: this.editData.data[0].id_servicio,
             nombre: this.editData.data[0].nombre,
             descripcion: this.editData.data[0].descripcion,
+            detalles: this.editData.data[0].detalle,
             id_vehiculo: this.editData.data[0].id_vehiculo,
             id_tecnico: this.editData.data[0].id_tecnico,
+            nombre_tecnico: this.editData.data[0].nombre_tecnico,
+            id_cliente: this.editData.data[0].id_cliente,
+            nombre_cliente: this.editData.data[0].nombre_cliente,
+            fecha_entrada: this.editData.data[0].fecha_entrada,
+            fecha_salida: this.editData.data[0].fecha_salida,
+            fecha_agenda: this.editData.data[0].fecha_agenda,
+            marca: this.editData.data[0].marca,
+            modelo: this.editData.data[0].modelo,
+            version: this.editData.data[0].version,
+
+
           })
           this.openModal()
 
@@ -68,6 +90,10 @@ export class ModalServicioEditComponent implements OnInit {
     formData.append("descripcion", this.servicioForm.get("descripcion")?.value);
     formData.append("id_vehiculo", this.servicioForm.get("id_vehiculo")?.value);
     formData.append("id_tecnico", this.servicioForm.get("id_tecnico")?.value);
+
+
+
+
 
 
     if (this.servicioForm.valid) {

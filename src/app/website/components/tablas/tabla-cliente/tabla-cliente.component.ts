@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatDateRangePicker, MatDateRangeInput, MatDatepicker } from '@angular/material/datepicker';
 import { ModalClienteEditComponent } from '../../modals/modal-cliente-edit/modal-cliente-edit.component';
 import { FormControl, FormGroup } from '@angular/forms';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-tabla-cliente',
@@ -18,33 +19,25 @@ export class TablaClienteComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: any = MatPaginator;
   @ViewChild(MatSort) sort: any = MatSort;
+  @ViewChild(ModalClienteEditComponent) addView!: ModalClienteEditComponent;
 
 
   constructor(private usuarioService: UsuariosService, private dialog: MatDialog) { }
 
 
-  @ViewChild(ModalClienteEditComponent) addView!: ModalClienteEditComponent;
 
   displayedColumns: string[] = ['id', 'first_name', 'last_name', 'email', 'username', 'editar', 'eliminar'];
 
   dataSource: any
   public modal?: ModalClienteAddComponent
-  cliente: any = '';
-  ngOnInit(): void {
+  cliente: any;
 
+
+  ngOnInit(): void {
     this.getCliente();
   }
 
-  openModalAdd() {
-    this.dialog.open(ModalClienteAddComponent, {
-      width: '100%',
-    })
-  }
-  openModalEdit() {
-    this.dialog.open(ModalClienteEditComponent, {
-      width: '100%',
-    })
-  }
+
   getCliente() {
     this.usuarioService.getCliente()
     .subscribe({
@@ -64,10 +57,12 @@ export class TablaClienteComponent implements OnInit {
       }
     })
   }
+
   updateCliente(id: any) {
     this.addView.loadData(id)
 
   }
+
   refreshTable(){
     this.getCliente();
   }
@@ -76,8 +71,17 @@ export class TablaClienteComponent implements OnInit {
     var formData: any = new FormData();
     formData.append("id", id);
 
-    if (confirm('remove?')) {
-      this.usuarioService.deleteUsuario(formData)
+
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: 'Deseas eliminar el cliente?',
+      icon: 'error',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuarioService.deleteUsuario(formData)
         .subscribe({
           next: (res) => {
             this.getCliente()
@@ -87,8 +91,14 @@ export class TablaClienteComponent implements OnInit {
             alert('Error deleting')
           }
         })
-    }
+        Swal.fire('Eliminado con exito!', '', 'success')
+
+      } else if (result.isDenied || result.isDismissed) {
+        Swal.fire('El cliente no fue eliminado.', '', 'info')
+      }
+    })
   }
+
   filtroData = new FormGroup({
     fecha_inicio_filtro: new FormControl(),
     fecha_fin_filtro: new FormControl(),

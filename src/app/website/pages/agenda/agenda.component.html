@@ -1,13 +1,38 @@
 <div class="container-fluid contenedor">
     <div class="row">
-        <div class="col-sm-9 col-md-9 col-xl-9 col-xxl-9">
-            <app-calendario></app-calendario>
-        </div>
-        <div class="col-3">
-            <section class="side-contenedor">
-                <h1>Leyenda e informacion</h1>
-            </section>
 
-        </div>
+        <c-nav variant="tabs">
+            <a [active]="true" [cTabContent]="tabContent" [routerLink] [tabPaneIdx]="0" cNavLink style="color:black">Calendario</a>
+            <a [cTabContent]="tabContent" [routerLink] [tabPaneIdx]="1" cNavLink style="color:black">Gestion de agenda</a>
+        </c-nav>
+        <c-tab-content #tabContent="cTabContent" >
+            <c-tab-pane class="p-3">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-9 col-md-9 col-xl-9 col-xxl-9">
+                            <app-calendario contentHeight="auto" *ngIf="load"></app-calendario>
+                        </div>
+                        <div class="col-3">
+                            <section class="side-contenedor">
+                                <h1>Leyenda e informacion</h1>
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+            </c-tab-pane>
+            <c-tab-pane class="p-3">
+                <app-tabla-agenda></app-tabla-agenda>
+            
+            </c-tab-pane>
+        </c-tab-content>
+
+
+
+
+
+
+
+
     </div>
 </div>

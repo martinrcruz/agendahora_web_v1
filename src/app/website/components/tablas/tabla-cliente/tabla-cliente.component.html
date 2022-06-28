@@ -124,7 +124,7 @@
                 <td mat-cell *matCellDef="let element">
 
                         <a class="btn btn-warning fa-solid fa-pen-to-square" style="color:white;"
-                            (click)="updateCliente(element.id)"></a>
+                            (click)="updateCliente( element.id )"></a>
                     <app-modal-cliente-edit (refreshTable)="refreshTable()"></app-modal-cliente-edit>
                 </td>
             </ng-container>

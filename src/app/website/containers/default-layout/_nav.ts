@@ -28,7 +28,7 @@ export const navItems: INavData[] = [
       },
       {
         name: 'Historial',
-        url: '/historial-servicio',
+        url: '/historial-agenda',
         iconComponent: { name: 'cil-history' },
 
       }
@@ -45,12 +45,6 @@ export const navItems: INavData[] = [
         iconComponent: { name: 'cil-hand-point-right' },
 
       },
-      {
-        name: 'Solicitud Clientes',
-        url: '/solicitud-cliente',
-        iconComponent: { name: 'cil-bell-exclamation' },
-
-      }
     ]
   },
   {
@@ -68,8 +62,34 @@ export const navItems: INavData[] = [
         url: '/solicitud-vehiculo',
         iconComponent: { name: 'cil-bell-exclamation' },
 
-      }
+      },
+      {
+        name: 'Mantenedores',
+        iconComponent: { name: 'cil-car-alt' },
+        children: [
+          {
+            name: 'Marca',
+            url: '/marca',
+            iconComponent: { name: 'cil-triangle' },
+
+          },
+          {
+            name: 'Modelo',
+            url: '/modelo',
+            iconComponent: { name: 'cil-square' },
+
+          },
+          {
+            name: 'Version',
+            url: '/version',
+            iconComponent: { name: 'cil-circle' },
+
+          }
+        ]
+      },
+
     ]
+
   },
   {
     name: 'Usuarios',

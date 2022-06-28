@@ -38,18 +38,22 @@
                         <div class="col-2">
                             <p>Selecciona una marca: </p>
                             <select aria-label="Large select example" cSelect class="mb-3" sizing="lg"
-                                name="marca_filtro" id="marca_filtro" formControlName="marca_filtro" >
+                                name="marca_filtro" id="marca_filtro" formControlName="marca_filtro"
+                                (change)="changeMarca($event)">
 
-                             <option *ngFor="let datoMarca of selectorMarcaData" value="{{datoMarca.id_marca}}">{{datoMarca.nombre}}</option>
-                            
+                                <option *ngFor="let datoMarca of selectorMarcaData" value="{{datoMarca.id_marca}}">
+                                    {{datoMarca.nombre}}</option>
+
                             </select>
                         </div>
 
                         <div class="col-2">
                             <p>Selecciona un modelo: </p>
                             <select aria-label="Large select example" cSelect class="mb-3" sizing="lg"
-                                name="modelo_filtro" id="floatingInput" formControlName="modelo_filtro">
-                                <option *ngFor="let datoModelo of selectorModeloData" value="{{datoModelo.id_modelo}}">{{datoModelo.nombre}}</option>
+                                name="modelo_filtro" id="floatingInput" formControlName="modelo_filtro"
+                                (change)="changeVersion($event)">
+                                <option *ngFor="let datoModelo of selectorModeloData" value="{{datoModelo.id_modelo}}">
+                                    {{datoModelo.nombre}}</option>
 
                             </select>
                         </div>
@@ -58,17 +62,24 @@
                             <p>Selecciona una version: </p>
                             <select aria-label="Large select example" cSelect class="mb-3" sizing="lg"
                                 name="version_filtro" id="floatingInput" formControlName="version_filtro">
-                                <option>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option *ngFor="let datoVersion of selectorVersionData"
+                                    value="{{datoVersion.id_version}}">{{datoVersion.nombre}}</option>
+
                             </select>
                         </div>
-
-
                         <div class="col-2">
-                            <button cButton class="boton-filtro" color="primary" type="submit">Filtrar</button>
+                            <div class="row">
+                                <div class="col">
+                                    <button cButton class="boton-filtro" color="primary" type="submit">Filtrar</button>
+                                </div>
+                                <div class="col">
+                                    <button cButton class="boton-reset" color="warning" (click)="limpiarFiltro()"
+                                        type="submit">Limpiar</button>
+                                </div>
+                            </div>
                         </div>
+
+
                     </div>
                 </div>
 
@@ -123,6 +134,11 @@
             <ng-container matColumnDef="id_cliente" class="table-head">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> ID CLIENTE </th>
                 <td mat-cell *matCellDef="let element"> {{element.id_cliente}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nombre_cliente" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE CLIENTE </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre_cliente}} </td>
             </ng-container>
 
             <ng-container matColumnDef="color" class="table-head">

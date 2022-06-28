@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { UsuariosService } from '../../../../services/usuarios.service';
 import { ModalUsuarioEditComponent } from '../../modals/modal-usuario-edit/modal-usuario-edit.component';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-tabla-usuarios',
@@ -65,8 +66,17 @@ export class TablaUsuariosComponent implements OnInit {
     var formData: any = new FormData();
     formData.append("id", id);
 
-    if (confirm('remove?')) {
-      this.usuarioService.deleteUsuario(formData)
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: 'Deseas eliminar el usuario?',
+      icon: 'error',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      showCancelButton: true,
+    }).then((result) => {
+      if(result.isConfirmed) {
+
+        this.usuarioService.deleteUsuario(formData)
         .subscribe({
           next: (res) => {
             this.getUsuario()
@@ -76,7 +86,13 @@ export class TablaUsuariosComponent implements OnInit {
             alert('Error deleting')
           }
         })
-    }
+        Swal.fire('Eliminado con exito!', '', 'success')  
+
+      } else if(result.isDenied || result.isDismissed){
+        Swal.fire('El usuario no fue eliminado.', '', 'info')  
+      }
+    })
+
   }
 
 

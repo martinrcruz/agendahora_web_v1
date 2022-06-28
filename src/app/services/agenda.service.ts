@@ -8,15 +8,15 @@ import { HttpClient } from '@angular/common/http';
 export class AgendaService {
 
   private apiUrl: string = environment.apiUrl;
-  private controllerUrl: string = 'hora_agenda';
+  private controllerUrl: string = 'agenda';
   constructor(private http: HttpClient) { }
 
-
-
-  
-  
   getAgenda() {
     return this.http.get(`${this.apiUrl}${this.controllerUrl}/getHoraAgenda`);
+  }
+
+  getHoraAgenda() {
+    return this.http.get(`${this.apiUrl}${this.controllerUrl}/getHoraAgendaTabla`);
   }
 
   getAgendaById(id_hora_agenda: any) {

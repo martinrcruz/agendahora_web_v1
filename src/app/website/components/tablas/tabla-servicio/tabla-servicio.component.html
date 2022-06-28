@@ -11,70 +11,139 @@
             <form [formGroup]="filtroData" (ngSubmit)="filtrarTabla()">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-2">
-                            <p>Fecha de inicio: </p>
-                            <mat-form-field appearance="outline">
-                                <mat-label>Seleccionar</mat-label>
-                                <input matInput [matDatepicker]="picker1" formControlName="fecha_inicio_filtro"
-                                    name="fecha_inicio_filtro">
-                                <mat-hint>DD/MM/YYYY</mat-hint>
-                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                <mat-datepicker #picker1></mat-datepicker>
-                            </mat-form-field>
-                        </div>
+                        <div class="col-10">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <p>Fecha de inicio servicio: </p>
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Seleccionar</mat-label>
+                                            <input matInput [matDatepicker]="picker1"
+                                                formControlName="fecha_inicio_filtro" name="fecha_inicio_filtro">
+                                            <mat-hint>DD/MM/YYYY</mat-hint>
+                                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker1></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
 
-                        <div class="col-2">
+                                    <div class="col-3">
 
-                            <p>Fecha de fin: </p>
-                            <mat-form-field appearance="outline">
-                                <mat-label>Seleccionar</mat-label>
-                                <input matInput [matDatepicker]="picker2" formControlName="fecha_fin_filtro"
-                                    name="fecha_fin_filtro">
-                                <mat-hint>DD/MM/YYYY</mat-hint>
-                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                                <mat-datepicker #picker2></mat-datepicker>
-                            </mat-form-field>
-                        </div>
+                                        <p>Fecha de fin servicio: </p>
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Seleccionar</mat-label>
+                                            <input matInput [matDatepicker]="picker2" formControlName="fecha_fin_filtro"
+                                                name="fecha_fin_filtro">
+                                            <mat-hint>DD/MM/YYYY</mat-hint>
+                                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker2></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
 
-                        <div class="col-2">
-                            <p>Selecciona una marca: </p>
-                            <select aria-label="Large select example" cSelect class="mb-3" sizing="lg"
-                                name="marca_filtro" id="floatingInput" formControlName="marca_filtro">
-                                <option>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                    <div class="col-3">
+                                        <p>Fecha de agenda: </p>
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Seleccionar</mat-label>
+                                            <input matInput [matDatepicker]="picker3"
+                                                formControlName="fecha_agenda_filtro" name="fecha_fin_filtro">
+                                            <mat-hint>DD/MM/YYYY</mat-hint>
+                                            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker3></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <p>Selecciona un tecnico: </p>
+                                        <select aria-label="Large select example" cSelect class="mb-3" sizing="md"
+                                            name="tecnico_filtro" id="tecnico_filtro" formControlName="tecnico_filtro">
+                                            <option *ngFor="let datoTecnico of selectorTecnicoData"
+                                                value="{{datoTecnico.id}}">{{datoTecnico.nombre_tecnico}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row pt-3">
+
+                                    <div class="col-3">
+                                        <p>Selecciona una marca: </p>
+                                        <select aria-label="Large select example" cSelect class="mb-3" sizing="md"
+                                            name="marca_filtro" id="marca_filtro" formControlName="marca_filtro"
+                                            (change)="changeMarca($event)">
+            
+                                            <option *ngFor="let datoMarca of selectorMarcaData" value="{{datoMarca.id_marca}}">
+                                                {{datoMarca.nombre}}</option>
+            
+                                        </select>
+                                    </div>
+                                    <div class="col-3">
+                                        <p>Selecciona un modelo: </p>
+                            <select aria-label="Large select example" cSelect class="mb-3" sizing="md"
+                                name="modelo_filtro" id="floatingInput" formControlName="modelo_filtro"
+                                (change)="changeVersion($event)">
+                                <option *ngFor="let datoModelo of selectorModeloData" value="{{datoModelo.id_modelo}}">
+                                    {{datoModelo.nombre}}</option>
+
                             </select>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <p>Selecciona una version: </p>
+                                        <select aria-label="Large select example" cSelect class="mb-3" sizing="md"
+                                            name="version_filtro" id="floatingInput" formControlName="version_filtro">
+                                            <option *ngFor="let datoVersion of selectorVersionData"
+                                                value="{{datoVersion.id_version}}">{{datoVersion.nombre}}</option>
+            
+                                        </select>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <p>Selecciona un estado: </p>
+                                        <select aria-label="Large select example" cSelect class="mb-3" sizing="md"
+                                            name="estado" id="floatingInput" formControlName="estado">
+                                            <option value="1">1.- Por confirmar </option>
+                                            <option value="2">2.- Ingresado </option>
+                                            <option value="3">3.- En proceso </option>
+                                            <option value="4">4.- Completado </option>
+                                            <option value="5">5.- Con problemas </option>
+                                            <option value="6">6.- Cancelado </option>
+
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
                         </div>
+
+
+
 
                         <div class="col-2">
-                            <p>Selecciona un modelo: </p>
-                            <select aria-label="Large select example" cSelect class="mb-3" sizing="lg"
-                                name="modelo_filtro" id="floatingInput" formControlName="modelo_filtro">
-                                <option>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <button cButton class="boton-filtro" color="primary"
+                                            type="submit">Filtrar</button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <button cButton class="boton-reset" color="warning" (click)="limpiarFiltro()"
+                                            type="submit">Limpiar</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="col-2">
-                            <p>Selecciona una version: </p>
-                            <select aria-label="Large select example" cSelect class="mb-3" sizing="lg"
-                                name="version_filtro" id="floatingInput" formControlName="version_filtro">
-                                <option>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-
-
-                        <div class="col-2">
-                            <button cButton class="boton-filtro" color="primary" type="submit">Filtrar</button>
-                        </div>
                     </div>
+
                 </div>
+
 
 
 
@@ -82,21 +151,11 @@
         </div>
     </div>
 
-    <div class="row seccion-leyenda">
-        <div class="col-3">
 
-        </div>
-        <div class="col-3">
-
-        </div>
-        <div class="col-3">
-
-        </div>
-    </div>
 
     <div class="row">
         <div class="col-3">
-            <app-modal-servicio-add (refreshTable)="refreshTable()"></app-modal-servicio-add>
+            <!-- <app-modal-servicio-add (refreshTable)="refreshTable()"></app-modal-servicio-add> -->
         </div>
         <div class="col-3 offset-6">
             <mat-form-field appearance="standard">
@@ -119,14 +178,46 @@
                 <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
             </ng-container>
 
+
+            <ng-container matColumnDef="nombre_cliente" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE CLIENTE </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre_cliente}} </td>
+            </ng-container>
+
             <ng-container matColumnDef="id_vehiculo" class="table-head">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> ID VEHICULO </th>
                 <td mat-cell *matCellDef="let element"> {{element.id_vehiculo}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="id_tecnico" class="table-head">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID TECNICO </th>
-                <td mat-cell *matCellDef="let element"> {{element.id_tecnico}} </td>
+            <ng-container matColumnDef="marca" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> MARCA </th>
+                <td mat-cell *matCellDef="let element"> {{element.marca}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="modelo" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> MODELO </th>
+                <td mat-cell *matCellDef="let element"> {{element.modelo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="version" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> VERSION </th>
+                <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="nombre_tecnico" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE TECNICO </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre_tecnico}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="fecha_entrada" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> FECHA ENTRADA </th>
+                <td mat-cell *matCellDef="let element"> {{element.fecha_entrada}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="fecha_salida" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> FECHA SALIDA </th>
+                <td mat-cell *matCellDef="let element"> {{element.fecha_salida}} </td>
             </ng-container>
 
             <ng-container matColumnDef="estado_servicio" class="table-head">
@@ -138,10 +229,11 @@
             <ng-container matColumnDef="revisar" class="table-head">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> REVISAR </th>
                 <td mat-cell *matCellDef="let element">
-                    <a (click)="checkServicio(element.id_servicio)" cButton class="btn-info fas fa-eye openModalButton" style="color:white;">
-                    
-                    <app-modal-servicio-check></app-modal-servicio-check>
-                </a>
+                    <a (click)="checkServicio(element.id_servicio)" cButton class="btn-info fas fa-eye openModalButton"
+                        style="color:white;">
+
+                        <app-modal-servicio-check></app-modal-servicio-check>
+                    </a>
                 </td>
             </ng-container>
 
@@ -149,9 +241,9 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> EDITAR </th>
                 <td mat-cell *matCellDef="let element">
                     <a class="btn btn-warning fa-solid fa-pen-to-square openModalButton" cButton style="color:white;"
-                    (click)="updateServicio(element.id_servicio)">
-                    <app-modal-servicio-edit></app-modal-servicio-edit>
-                </a>
+                        (click)="updateServicio(element.id_servicio)">
+                        <app-modal-servicio-edit></app-modal-servicio-edit>
+                    </a>
                 </td>
             </ng-container>
 
