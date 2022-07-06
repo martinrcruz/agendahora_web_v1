@@ -21,7 +21,7 @@ export class AuthService {
   private controllerUrl: string = 'auth';
 
   isLoggedIn() {
-    return this.http.get(`${this.apiUrl}${this.controllerUrl}/is_logged_in`, { withCredentials: true });
+    return this.http.get(`${this.apiUrl}${this.controllerUrl}/get_user_data`, { withCredentials: true });
     // .pipe(
     //   tap((res)=> this.is_logged.next(res))
     // )

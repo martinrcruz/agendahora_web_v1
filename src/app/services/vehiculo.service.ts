@@ -27,7 +27,7 @@ export class VehiculoService {
     return this.http.get(`${this.apiUrl}/marca/getMarca`);
   }
 
-  getModelosVehiculo(id_marca: number) {
+  getModelosVehiculo(id_marca: any) {
     return this.http.get(`${this.apiUrl}/modelo/getModelo/` + id_marca);
   }
 

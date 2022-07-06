@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class AuthGuard implements CanActivate {
 
   response: any;
+  respuesta: any = 1;
   constructor(
     private authService: AuthService,
     private router: Router
@@ -23,8 +24,10 @@ export class AuthGuard implements CanActivate {
       .subscribe({
         next: (res) => {
           this.response = res
-          console.log(this.authService.getUserData());
-          if (this.response == false) {
+          
+          this.respuesta = this.response['estado'];
+          console.log(this.response['estado'])
+          if (this.response['estado'] == 0) {
             this.router.navigateByUrl('auth/login')
           }
         },
@@ -33,23 +36,7 @@ export class AuthGuard implements CanActivate {
         }
       })
 
-    // this.authService.user_data$
-    //   .pipe(
-    //     tap(user => {
-    //       console.log('what')
-    //       if (!user) {
-    //         this.router.navigateByUrl('auth/login')
-    //         return false;
-    //       }
-    //       return true;
-    //     })
-    //   )
-
-
-
-
-
-    if (this.response === false) {
+    if (this.respuesta == 0) {
       this.router.navigateByUrl('auth/login')
       return false;
     }

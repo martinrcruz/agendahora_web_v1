@@ -15,6 +15,7 @@ export class UsuariosService {
   getUsuario() {
     return this.http.get(`${this.apiUrl}${this.controllerUrl}/getUsuario`);
   }
+
   getCliente(){
     return this.http.get(`${this.apiUrl}${this.controllerUrl}/getCliente`);
   }
@@ -38,7 +39,6 @@ export class UsuariosService {
   deleteUsuario(id_usuario: any) {
     return this.http.post(`${this.apiUrl}${this.controllerUrl}/deleteUsuario`, id_usuario);
   }
-
 
   getTecnicos(){
     return this.http.get(`${this.apiUrl}${this.controllerUrl}/getTecnicos`);

@@ -30,7 +30,7 @@ export class TablaSolicitudVehiculoComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['id_marca', 'modelo', 'ano', 'patente', 'version', 'ano_compra', 'sucursal_compra', 'nro_chasis', 'nro_motor', 'img_1', 'img_2', 'img_3', 'id_usuario_gestor', 'id_cliente', 'editar', 'eliminar'];
+  displayedColumns: string[] = ['marca', 'modelo', 'ano', 'patente', 'version', 'ano_compra', 'sucursal_compra', 'nro_chasis', 'nro_motor', 'img_1', 'img_2', 'img_3', 'id_usuario_gestor', 'id_cliente', 'editar', 'eliminar'];
 
   dataSource: any
   public modal?: ModalSolicitudVehiculoAddComponent
