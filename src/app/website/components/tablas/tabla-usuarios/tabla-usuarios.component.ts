@@ -96,7 +96,29 @@ export class TablaUsuariosComponent implements OnInit {
   }
 
 
+  filtroData = new FormGroup({
+    fecha_inicio_filtro: new FormControl(),
+    fecha_fin_filtro: new FormControl(),
 
+  })
+  filtrarTabla() {
+
+    var filtroData: any = new FormData();
+
+    filtroData.append("marca_filtro", this.filtroData.get("marca_filtro")?.value);
+    filtroData.append("modelo_filtro", this.filtroData.get("modelo_filtro")?.value);
+    filtroData.append("version_filtro", this.filtroData.get("version_filtro")?.value);
+    console.log(filtroData)
+  }
+
+ limpiarFiltro() {
+    this.filtroData.setValue({
+      fecha_inicio_filtro: '',
+      fecha_fin_filtro: '',
+
+    })
+    this.getUsuario();
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

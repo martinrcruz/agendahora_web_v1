@@ -67,21 +67,23 @@
                                         <select aria-label="Large select example" cSelect class="mb-3" sizing="md"
                                             name="marca_filtro" id="marca_filtro" formControlName="marca_filtro"
                                             (change)="changeMarca($event)">
-            
-                                            <option *ngFor="let datoMarca of selectorMarcaData" value="{{datoMarca.id_marca}}">
+
+                                            <option *ngFor="let datoMarca of selectorMarcaData"
+                                                value="{{datoMarca.id_marca}}">
                                                 {{datoMarca.nombre}}</option>
-            
+
                                         </select>
                                     </div>
                                     <div class="col-3">
                                         <p>Selecciona un modelo: </p>
-                            <select aria-label="Large select example" cSelect class="mb-3" sizing="md"
-                                name="modelo_filtro" id="floatingInput" formControlName="modelo_filtro"
-                                (change)="changeVersion($event)">
-                                <option *ngFor="let datoModelo of selectorModeloData" value="{{datoModelo.id_modelo}}">
-                                    {{datoModelo.nombre}}</option>
+                                        <select aria-label="Large select example" cSelect class="mb-3" sizing="md"
+                                            name="modelo_filtro" id="floatingInput" formControlName="modelo_filtro"
+                                            (change)="changeVersion($event)">
+                                            <option *ngFor="let datoModelo of selectorModeloData"
+                                                value="{{datoModelo.id_modelo}}">
+                                                {{datoModelo.nombre}}</option>
 
-                            </select>
+                                        </select>
                                     </div>
 
                                     <div class="col-3">
@@ -90,7 +92,7 @@
                                             name="version_filtro" id="floatingInput" formControlName="version_filtro">
                                             <option *ngFor="let datoVersion of selectorVersionData"
                                                 value="{{datoVersion.id_version}}">{{datoVersion.nombre}}</option>
-            
+
                                         </select>
                                     </div>
 
@@ -98,11 +100,11 @@
                                         <p>Selecciona un estado: </p>
                                         <select aria-label="Large select example" cSelect class="mb-3" sizing="md"
                                             name="estado" id="floatingInput" formControlName="estado">
-                                            <option value="1">1.- Por confirmar </option>
-                                            <option value="2">2.- Ingresado </option>
-                                            <option value="3">3.- En proceso </option>
-                                            <option value="4">4.- Completado </option>
-                                            <option value="5">5.- Con problemas </option>
+                                            <option value="1">1.- Completado </option>
+                                            <option value="2">2.- En Proceso </option>
+                                            <option value="3">3.- Ingresado </option>
+                                            <option value="4">4.- Pendiente </option>
+                                            <option value="5">5.- Con Problemas </option>
                                             <option value="6">6.- Cancelado </option>
 
                                         </select>
@@ -168,14 +170,19 @@
         <table mat-table [dataSource]="dataSource" matSort>
 
             <!-- Position Column -->
+            <ng-container matColumnDef="id_servicio" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.id_servicio}} </td>
+            </ng-container>
+
             <ng-container matColumnDef="nombre" class="table-head">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE </th>
                 <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="descripcion" class="table-head">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> DESCRIPCION </th>
-                <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+            <ng-container matColumnDef="observacion" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> OBSERVACION </th>
+                <td mat-cell *matCellDef="let element"> {{element.observacion}} </td>
             </ng-container>
 
 
@@ -222,7 +229,13 @@
 
             <ng-container matColumnDef="estado_servicio" class="table-head">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> ESTADO </th>
-                <td mat-cell *matCellDef="let element" class="estado_servicio"> {{element.estado_servicio}} EN PROCESO
+
+                <td mat-cell *matCellDef="let element">
+                    <div class="estado_completo" *ngIf="element.estado_servicio == 1">Completado</div>
+                    <div class="estado_proceso" *ngIf="element.estado_servicio == 2">En proceso</div>
+                    <div class="estado_ingresado" *ngIf="element.estado_servicio == 3">Ingresado</div>
+                    <div class="estado_pendiente" *ngIf="element.estado_servicio == 4">Pendiente</div>
+                    <div class="estado_problema" *ngIf="element.estado_servicio == 5">Con problemas</div>
                 </td>
             </ng-container>
 
@@ -232,20 +245,20 @@
                     <a (click)="checkServicio(element.id_servicio)" cButton class="btn-info fas fa-eye openModalButton"
                         style="color:white;">
 
-                        <app-modal-servicio-check></app-modal-servicio-check>
+                        <app-modal-servicio-check (onRefreshTable)="refreshTable()"></app-modal-servicio-check>
                     </a>
                 </td>
             </ng-container>
 
-            <ng-container matColumnDef="editar" class="table-head">
+            <!-- <ng-container matColumnDef="editar" class="table-head">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> EDITAR </th>
                 <td mat-cell *matCellDef="let element">
                     <a class="btn btn-warning fa-solid fa-pen-to-square openModalButton" cButton style="color:white;"
                         (click)="updateServicio(element.id_servicio)">
-                        <app-modal-servicio-edit></app-modal-servicio-edit>
+                        <app-modal-servicio-edit (onRefreshTable)="refreshTable()"></app-modal-servicio-edit>
                     </a>
                 </td>
-            </ng-container>
+            </ng-container> -->
 
             <ng-container matColumnDef="pdf" class="table-head">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> EXPORTAR </th>

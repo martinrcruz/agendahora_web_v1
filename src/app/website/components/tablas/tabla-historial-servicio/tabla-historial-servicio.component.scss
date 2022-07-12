@@ -175,3 +175,39 @@ th {
   hyphens: auto;
 
 }
+
+.estado_completo {
+  background-color: green;
+  color: white;
+  font-weight: 500;
+  padding: 10px 10px 10px 10px;
+}
+
+.estado_proceso {
+  background-color: rgb(224, 202, 4);
+  color: white;
+  font-weight: 500;
+  padding: 10px 10px 10px 10px;
+
+}
+
+.estado_ingresado {
+  background-color: rgb(1, 131, 170);
+  color: white;
+  font-weight: 500;
+  padding: 10px 10px 10px 10px;
+}
+
+.estado_pendiente {
+  background-color: rgb(236, 87, 1);
+  color: white;
+  font-weight: 500;
+  padding: 10px 10px 10px 10px;
+}
+
+.estado_problema {
+  background-color: rgb(105, 22, 153);
+  color: white;
+  font-weight: 500;
+  padding: 10px 10px 10px 10px;
+}

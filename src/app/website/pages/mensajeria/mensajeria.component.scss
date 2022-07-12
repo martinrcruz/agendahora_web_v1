@@ -1,0 +1,119 @@
+.bread-crumb {
+    background-color: rgb(255, 255, 255);
+    padding: 15px 15px 15px 35px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.chat-menu {
+    background-color: rgb(240, 240, 240);
+    overflow-y: scroll;
+    height: 600px;
+}
+
+.chat-component {
+    background-color: rgb(255, 255, 255);
+    overflow-y: scroll;
+    height: 600px;
+}
+
+.titulo {
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    padding: 25px 15px 15px 15px;
+
+}
+
+.message-row {
+    background-color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 12px;
+    border-radius: 10px;
+}
+
+.message-img {
+    padding: 10% 0px 0px 10%;
+}
+
+.chat-title {
+    font-weight: 500;
+    font-size: 15px;
+    color: rgb(46, 46, 46);
+    margin: 0px;
+    padding-bottom: 4px;
+}
+
+.chat-text {
+    font-size: 14px;
+    color: rgb(92, 92, 92);
+    margin: 0px;
+}
+
+.chatzone-title {
+    background-color: rgb(240, 240, 240);
+    padding: 20px 10px 10px 10px;
+    margin: 0px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.chatzone-name {
+    color: rgb(44, 44, 44);
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.mensaje-red {
+    text-align: start;
+    background-color: rgb(235, 54, 54);
+    color: white;
+    padding: 15px 5px 15px 5px;
+    border-radius: 0px 12px 12px 0px;
+}
+
+.img-red {
+    background-color: rgb(235, 54, 54);
+    color: white;
+    padding-top: 20px;
+    padding-left: 20px;
+    border-radius: 12px 0px 0px 12px;
+
+}
+
+.mensaje-blue {
+    text-align: center;
+    background-color: rgba(56, 89, 236, 0.993);
+    color: white;
+    padding: 15px 5px 15px 5px;
+    border-radius: 12px 0px 0px 12px;
+
+}
+
+.img-blue {
+    background-color: rgba(56, 89, 236, 0.993);
+    color: white;
+    padding-top: 20px;
+    padding-right: 20px;
+    border-radius: 0px 12px 12px 0px;
+}
+
+.msg-row-chat {
+    margin: 12px;
+}
+
+.inputzone {
+    background-color: rgb(240, 240, 240);
+    padding: 15px 0px 15px 0px;
+}
+
+
+.send-btn {
+    background-color: rgb(67, 134, 179);
+    border: none;
+    padding: 7px 30px 7px 30px;
+    float: right;
+    color:white;
+    border-radius: 8px;
+}

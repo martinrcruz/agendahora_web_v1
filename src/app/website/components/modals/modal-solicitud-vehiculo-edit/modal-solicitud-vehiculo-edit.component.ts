@@ -26,13 +26,13 @@ export class ModalSolicitudVehiculoEditComponent implements OnInit {
 
   solicitudVehiculoForm = new FormGroup({
     id_solicitud_vehiculo: new FormControl({ disabled: true}),
-    id_marca: new FormControl('', Validators.required),
+    marca: new FormControl('', Validators.required),
     modelo: new FormControl('', Validators.required),
     ano: new FormControl('', Validators.required),
     patente: new FormControl('', Validators.required),
     version: new FormControl('', Validators.required),
     ano_compra: new FormControl('', Validators.required),
-    sucursal_compra: new FormControl('', Validators.required),
+    // sucursal_compra: new FormControl('', Validators.required),
     nro_chasis: new FormControl('', Validators.required),
     nro_motor: new FormControl('', Validators.required),
     img_1: new FormControl('', Validators.required),
@@ -47,22 +47,21 @@ export class ModalSolicitudVehiculoEditComponent implements OnInit {
   }
 
   loadData(id_solicitud_vehiculo: any) {
-    var formData: any = new FormData();
-    formData.append("id_solicitud_vehiculo", id_solicitud_vehiculo);
-    this.solicitudVehiculoService.getSolicitudVehiculoById(formData)
+
+    this.solicitudVehiculoService.getSolicitudVehiculoById(id_solicitud_vehiculo)
       .subscribe({
         next: (res) => {
           this.editData = res;
           console.log(this.editData.data[0].nombre);
           this.solicitudVehiculoForm.setValue({
             id_solicitud_vehiculo: this.editData.data[0].id_solicitud_vehiculo,
-            id_marca: this.editData.data[0].id_marca,
+            marca: this.editData.data[0].marca,
             modelo: this.editData.data[0].modelo,
             ano: this.editData.data[0].ano,
             patente: this.editData.data[0].patente,
             version: this.editData.data[0].version,
             ano_compra: this.editData.data[0].ano_compra,
-            sucursal_compra: this.editData.data[0].sucursal_compra,
+            // sucursal_compra: this.editData.data[0].sucursal_compra,
             nro_chasis: this.editData.data[0].nro_chasis,
             nro_motor: this.editData.data[0].nro_motor,
             img_1: this.editData.data[0].img_1,
@@ -84,13 +83,13 @@ export class ModalSolicitudVehiculoEditComponent implements OnInit {
   updateSolicitudVehiculo() {
     var formData: any = new FormData();
     formData.append("id_solicitud_vehiculo", this.solicitudVehiculoForm.get("id_solicitud_vehiculo")?.value);
-    formData.append("id_marca", this.solicitudVehiculoForm.get("id_marca")?.value);
+    formData.append("marca", this.solicitudVehiculoForm.get("marca")?.value);
     formData.append("modelo", this.solicitudVehiculoForm.get("modelo")?.value);
     formData.append("ano", this.solicitudVehiculoForm.get("ano")?.value);
     formData.append("patente", this.solicitudVehiculoForm.get("patente")?.value);
     formData.append("version", this.solicitudVehiculoForm.get("version")?.value);
     formData.append("ano_compra", this.solicitudVehiculoForm.get("ano_compra")?.value);
-    formData.append("sucursal_compra", this.solicitudVehiculoForm.get("sucursal_compra")?.value);
+    // formData.append("sucursal_compra", this.solicitudVehiculoForm.get("sucursal_compra")?.value);
     formData.append("nro_chasis", this.solicitudVehiculoForm.get("nro_chasis")?.value);
     formData.append("nro_motor", this.solicitudVehiculoForm.get("nro_motor")?.value);
     formData.append("img_1", this.solicitudVehiculoForm.get("img_1")?.value);
@@ -119,13 +118,13 @@ export class ModalSolicitudVehiculoEditComponent implements OnInit {
 
   clearForm() {
     this.solicitudVehiculoForm.setValue({
-      id_marca: '',
+      marca: '',
       modelo: '',
       ano: '',
       patente: '',
       version: '',
       ano_compra: '',
-      sucursal_compra: '',
+      // sucursal_compra: '',
       nro_chasis: '',
       nro_motor: '',
       img_1: '',

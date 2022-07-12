@@ -33,7 +33,7 @@ export class ModalServicioAddComponent implements OnInit {
   servicioForm = new FormGroup({
     id_servicio: new FormControl({value: 'No aplica', disabled: true}),
     nombre: new FormControl('', Validators.required),
-    descripcion: new FormControl('', Validators.required),
+    observacion: new FormControl('', Validators.required),
     id_vehiculo: new FormControl('', Validators.required),
     id_tecnico: new FormControl('', Validators.required),
   })
@@ -41,7 +41,7 @@ export class ModalServicioAddComponent implements OnInit {
   addServicio() {
     var formData: any = new FormData();
     formData.append("nombre", this.servicioForm.get("nombre")?.value);
-    formData.append("descripcion", this.servicioForm.get("descripcion")?.value);
+    formData.append("observacion", this.servicioForm.get("observacion")?.value);
     formData.append("id_vehiculo", this.servicioForm.get("id_vehiculo")?.value);
     formData.append("id_tecnico", this.servicioForm.get("id_tecnico")?.value);
 

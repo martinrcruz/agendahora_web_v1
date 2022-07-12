@@ -102,9 +102,6 @@ export class TablaClienteComponent implements OnInit {
   filtroData = new FormGroup({
     fecha_inicio_filtro: new FormControl(),
     fecha_fin_filtro: new FormControl(),
-    marca_filtro: new FormControl(),
-    modelo_filtro: new FormControl(),
-    version_filtro: new FormControl(),
 
   })
   filtrarTabla() {
@@ -115,6 +112,16 @@ export class TablaClienteComponent implements OnInit {
     filtroData.append("modelo_filtro", this.filtroData.get("modelo_filtro")?.value);
     filtroData.append("version_filtro", this.filtroData.get("version_filtro")?.value);
     console.log(filtroData)
+  }
+
+
+  limpiarFiltro() {
+    this.filtroData.setValue({
+      fecha_inicio_filtro: '',
+      fecha_fin_filtro: '',
+
+    })
+    this.getCliente();
   }
 
 

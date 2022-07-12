@@ -9,12 +9,96 @@
     background-color: rgb(235, 233, 233);
     margin: 10px;
     padding: 15px;
-    
-    border: 1px solid rgb(117, 117, 117)  !important;
+
+    border: 1px solid rgb(117, 117, 117) !important;
     border-radius: 10px !important;
     height: 98%;
 }
+
 .fc-scroller.fc-day-grid-container {
     overflow: auto !important;
     height: auto !important;
-  }
+}
+
+.reference-1 {
+    background-color: #37b853;
+    padding: 5px 20px 5px 20px;
+    margin: 5px auto 5px auto;
+    border-radius: 6px;
+    color: white;
+    font-weight: 550;
+    ;
+}
+
+.reference-3 {
+    background-color: #dbcd00;
+    padding: 5px 20px 5px 20px;
+    margin: 5px auto 5px auto;
+    border-radius: 6px;
+    color: white;
+    font-weight: 550;
+}
+
+.reference-4 {
+    background-color: #8e1492;
+    padding: 5px 20px 5px 20px;
+    margin: 5px auto 5px auto;
+    border-radius: 6px;
+    color: white;
+    font-weight: 550;
+}
+
+.table-header-servicios {
+    background-color: gray;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+    border-radius: 5px;
+
+}
+
+.table-titulo-servicios {
+    color: white;
+    padding: 8px;
+    margin-bottom: 0px;
+
+    text-align: center;
+}
+
+.servicios-dia {
+    background-color: rgb(255, 255, 255);
+    margin-top: 5px;
+    padding: 10px 8px 10px 8px;
+}
+
+.title-servicio {
+    font-size:14px;
+    font-weight: 550;
+    color:rgb(70, 70, 70);
+    margin:0px;
+}
+
+.subtitle-servicio {
+    font-size:12px;
+    font-weight: 500;
+    color:rgb(122, 122, 122);
+    margin:0px;
+}
+
+.date-servicio {
+    font-size:12px;
+    font-weight: 550;
+    color:rgb(122, 122, 122);
+    margin:0px;
+}
+.scrollable {
+    height: 300px;
+    width: 100%;
+    overflow-y: auto;
+    margin: 0px;
+    padding-left: 12px;
+    padding-right: 12px;
+
+}

@@ -63,34 +63,54 @@ export const navItems: INavData[] = [
         iconComponent: { name: 'cil-bell-exclamation' },
 
       },
-      {
-        name: 'Mantenedores',
-        iconComponent: { name: 'cil-car-alt' },
-        children: [
-          {
-            name: 'Marca',
-            url: '/marca',
-            iconComponent: { name: 'cil-triangle' },
-
-          },
-          {
-            name: 'Modelo',
-            url: '/modelo',
-            iconComponent: { name: 'cil-square' },
-
-          },
-          {
-            name: 'Version',
-            url: '/version',
-            iconComponent: { name: 'cil-circle' },
-
-          }
-        ]
-      },
 
     ]
 
   },
+
+  {
+    name: 'Mantenedores',
+    iconComponent: { name: 'cil-settings' },
+    children: [
+      {
+        name: 'Marca',
+        url: '/marca',
+        iconComponent: { name: 'cil-hand-point-right' },
+
+      },
+      {
+        name: 'Modelo',
+        url: '/modelo',
+        iconComponent: { name: 'cil-hand-point-right' },
+
+      },
+      {
+        name: 'Version',
+        url: '/version',
+        iconComponent: { name: 'cil-hand-point-right' },
+
+      },
+      {
+        name: 'Tipo Servicio',
+        url: '/tipo-servicio',
+        iconComponent: { name: 'cil-hand-point-right' },
+
+      },
+      {
+        name: 'Estado Servicio',
+        url: '/estado-servicio',
+        iconComponent: { name: 'cil-hand-point-right' },
+
+      },
+      {
+        name: 'Estado Solicitud',
+        url: '/estado-solicitud',
+        iconComponent: { name: 'cil-hand-point-right' },
+
+      }
+    ]
+  },
+
   {
     name: 'Usuarios',
     url: '/usuarios',

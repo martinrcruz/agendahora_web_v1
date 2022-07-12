@@ -23,6 +23,9 @@ import { AjustesCuentaComponent } from './website/pages/ajustes-cuenta/ajustes-c
 import { MarcaComponent } from './website/pages/marca/marca.component';
 import { ModeloComponent } from './website/pages/modelo/modelo.component';
 import { VersionComponent } from './website/pages/version/version.component';
+import { TipoServicioComponent } from './website/pages/tipo-servicio/tipo-servicio.component';
+import { EstadoServicioComponent } from './website/pages/estado-servicio/estado-servicio.component';
+import { EstadoSolicitudComponent } from './website/pages/estado-solicitud/estado-solicitud.component';
 
 const routes: Routes = [
   {
@@ -96,6 +99,21 @@ const routes: Routes = [
         path: 'version',
         canActivate: [AuthGuard],
         component: VersionComponent
+      },
+      {
+        path: 'tipo-servicio',
+        canActivate: [AuthGuard],
+        component: TipoServicioComponent
+      },
+      {
+        path: 'estado-servicio',
+        canActivate: [AuthGuard],
+        component: EstadoServicioComponent
+      },
+      {
+        path: 'estado-solicitud',
+        canActivate: [AuthGuard],
+        component: EstadoSolicitudComponent
       },
       {
         path: 'solicitud-vehiculo',

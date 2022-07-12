@@ -2,10 +2,12 @@
     <div class="row">
 
         <c-nav variant="tabs">
-            <a [active]="true" [cTabContent]="tabContent" [routerLink] [tabPaneIdx]="0" cNavLink style="color:black">Calendario</a>
-            <a [cTabContent]="tabContent" [routerLink] [tabPaneIdx]="1" cNavLink style="color:black">Gestion de agenda</a>
+            <a [active]="true" [cTabContent]="tabContent" [routerLink] [tabPaneIdx]="0" cNavLink
+                style="color:black">Calendario</a>
+            <a [cTabContent]="tabContent" [routerLink] [tabPaneIdx]="1" cNavLink style="color:black">Gestion de
+                agenda</a>
         </c-nav>
-        <c-tab-content #tabContent="cTabContent" >
+        <c-tab-content #tabContent="cTabContent">
             <c-tab-pane class="p-3">
                 <div class="container-fluid">
                     <div class="row">
@@ -15,6 +17,39 @@
                         <div class="col-3">
                             <section class="side-contenedor">
                                 <h1>Leyenda e informacion</h1>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col reference-1">
+                                            Aprobada (Servicio)
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col reference-3">
+                                            Pendiente (Hora agenda)
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col reference-4">
+                                            Revisar
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-fluid scrollable">
+                                    <div class="row">
+                                        <div class="table-header-servicios">
+                                            <p class="table-titulo-servicios">Servicios del Dia</p>
+                                        </div>
+                                        <div *ngFor="let servicios of this.serviciosDia" class="servicios-dia">
+                                            <p class="title-servicio"> {{ servicios.nombre }}</p>
+                                            <p class="subtitle-servicio"> {{ servicios.nombre_cliente }}</p>
+                                            <p class="date-servicio"> {{ servicios.agenda_inicio }}</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
                             </section>
 
                         </div>
@@ -23,7 +58,7 @@
             </c-tab-pane>
             <c-tab-pane class="p-3">
                 <app-tabla-agenda></app-tabla-agenda>
-            
+
             </c-tab-pane>
         </c-tab-content>
 

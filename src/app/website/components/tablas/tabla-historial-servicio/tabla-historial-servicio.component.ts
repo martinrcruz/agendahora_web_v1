@@ -11,6 +11,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2'
 import { VehiculoService } from 'src/app/services/vehiculo.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { ServiciosService } from 'src/app/services/servicios.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class TablaHistorialServicioComponent implements OnInit {
 
-  displayedColumns: string[] = ['nombre', 'descripcion', 'nombre_cliente', 'id_vehiculo', 'marca', 'modelo', 'version', 'nombre_tecnico', 'fecha_entrada', 'fecha_salida', 'estado_servicio', 'detalle'];
+  displayedColumns: string[] = ['id_servicio','nombre', 'observacion', 'nombre_cliente', 'id_vehiculo', 'marca', 'modelo', 'version', 'nombre_tecnico', 'fecha_entrada', 'fecha_salida', 'estado_servicio', 'detalle', 'pdf'];
 
   dataSource: any
   selectorMarcaData: any
@@ -38,6 +39,7 @@ export class TablaHistorialServicioComponent implements OnInit {
 
   constructor(
     private historialAgendaService: HistorialAgendaService,
+    private servicioService: ServiciosService,
     private dialog: MatDialog,
     private vehiculoService: VehiculoService,
     private usuarioService: UsuariosService
@@ -65,7 +67,7 @@ export class TablaHistorialServicioComponent implements OnInit {
 
 
   getHistorialServicio(filtroData: any | null | '') {
-    this.historialAgendaService.getHistorialAgendaTabla(filtroData)
+    this.servicioService.getHistorialServicioTabla(filtroData)
       .subscribe({
         next: (res) => {
           console.log(res)

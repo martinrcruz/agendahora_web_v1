@@ -17,7 +17,7 @@ export class ModalServicioEditComponent implements OnInit {
   constructor(private servicioService: ServiciosService, private tablaservicio: TablaServicioComponent) { }
 
   @Output() editedservicio = new EventEmitter<string>();
-  @Output() refreshTable = new EventEmitter<string>();
+  @Output() onRefreshTable = new EventEmitter<string>();
 
   errorMessage: string = '';
   errorClass: string | any = '';
@@ -27,7 +27,7 @@ export class ModalServicioEditComponent implements OnInit {
  servicioForm = new FormGroup({
     id_servicio: new FormControl({ disabled: true }),
     nombre: new FormControl('', Validators.required),
-    descripcion: new FormControl('', Validators.required),
+    observacion: new FormControl('', Validators.required),
     detalles: new FormControl('', Validators.required),
     nombre_cliente: new FormControl('', Validators.required),
     id_cliente: new FormControl('', Validators.required),
@@ -57,7 +57,7 @@ export class ModalServicioEditComponent implements OnInit {
           this.servicioForm.setValue({
             id_servicio: this.editData.data[0].id_servicio,
             nombre: this.editData.data[0].nombre,
-            descripcion: this.editData.data[0].descripcion,
+            observacion: this.editData.data[0].observacion,
             detalles: this.editData.data[0].detalle,
             id_vehiculo: this.editData.data[0].id_vehiculo,
             id_tecnico: this.editData.data[0].id_tecnico,
@@ -87,7 +87,7 @@ export class ModalServicioEditComponent implements OnInit {
     var formData: any = new FormData();
     formData.append("id_servicio", this.servicioForm.get("id_servicio")?.value);
     formData.append("nombre", this.servicioForm.get("nombre")?.value);
-    formData.append("descripcion", this.servicioForm.get("descripcion")?.value);
+    formData.append("observacion", this.servicioForm.get("observacion")?.value);
     formData.append("id_vehiculo", this.servicioForm.get("id_vehiculo")?.value);
     formData.append("id_tecnico", this.servicioForm.get("id_tecnico")?.value);
 
@@ -103,7 +103,7 @@ export class ModalServicioEditComponent implements OnInit {
             this.saveResponse = res;
             console.log(this.saveResponse)
             this.openModal()
-            this.refreshTable.emit();
+            this.onRefreshTable.emit();
           },
           error: (err) => {
             console.log(this.servicioForm.getRawValue())
@@ -116,7 +116,7 @@ export class ModalServicioEditComponent implements OnInit {
   clearForm() {
     this.servicioForm.setValue({
       nombre: '',
-      descripcion: '',
+      observacion: '',
       id_tecnico: '',
       id_vehiculo: '',
 

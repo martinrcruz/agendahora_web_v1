@@ -1,0 +1,153 @@
+<div class="container-fluid contenedor-tabla">
+    <div class="row">
+        <div class="header">
+            <h1> <strong>Panel de modelo</strong> </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="contenedor-filtro">
+            <form [formGroup]="filtroData" (ngSubmit)="filtrarTabla()">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-2">
+                            <p>Fecha de inicio: </p>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Seleccionar</mat-label>
+                                <input matInput [matDatepicker]="picker1" formControlName="fecha_inicio_filtro" name="fecha_inicio_filtro">
+                                <mat-hint>DD/MM/YYYY</mat-hint>
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-2">
+
+                            <p>Fecha de fin: </p>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Seleccionar</mat-label>
+                                <input matInput [matDatepicker]="picker2" formControlName="fecha_fin_filtro" name="fecha_fin_filtro">
+                                <mat-hint>DD/MM/YYYY</mat-hint>
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-2">
+                            <p>Selecciona una marca: </p>
+                            <select aria-label="Large select example" cSelect class="mb-3" sizing="lg" name="marca_filtro" id="floatingInput" formControlName="marca_filtro">
+                                <option>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                        </div>
+
+                        <div class="col-2">
+                            <p>Selecciona un modelo: </p>
+                            <select aria-label="Large select example" cSelect class="mb-3" sizing="lg"  name="modelo_filtro" id="floatingInput" formControlName="modelo_filtro">
+                                <option>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                        </div>
+
+                        <div class="col-2">
+                            <p>Selecciona una modelo: </p>
+                            <select aria-label="Large select example" cSelect class="mb-3" sizing="lg"  name="modelo_filtro" id="floatingInput" formControlName="modelo_filtro">
+                                <option>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                        </div>
+
+
+                        <div class="col-2">
+                            <button cButton class="boton-filtro" color="primary" type="submit">Filtrar</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-3">
+            <app-modal-modelo-add (refreshTable)="refreshTable()"></app-modal-modelo-add>
+        </div>
+        <div class="col-3 offset-6">
+            <mat-form-field appearance="standard">
+                <mat-label>Buscar</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="id_modelo" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> id_modelo </th>
+                <td mat-cell *matCellDef="let element"> {{element.id_modelo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="id_marca" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> id_marca </th>
+                <td mat-cell *matCellDef="let element"> {{element.id_marca}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nombre" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="logo" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> logo </th>
+                <td mat-cell *matCellDef="let element"> {{element.logo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="descripcion" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> descripcion </th>
+                <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="editar" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> EDITAR </th>
+                <td mat-cell *matCellDef="let element">
+
+
+                        <a class="btn btn-warning fa-solid fa-pen-to-square" style="color:white;"
+                            (click)="updateModelo(element.id_modelo)"></a>
+                    <app-modal-modelo-edit (refreshTable)="refreshTable()"></app-modal-modelo-edit>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="eliminar" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ELIMINAR </th>
+                <td mat-cell *matCellDef="let element">
+                        <a class="btn btn-danger fa-solid fa-trash-can" style="color:white;"
+                            (click)="deleteModelo(element.id_modelo)"></a>
+
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+    <br>
+</div>

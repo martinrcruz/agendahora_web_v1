@@ -168,14 +168,19 @@
         <table mat-table [dataSource]="dataSource" matSort>
 
             <!-- Position Column -->
+            <ng-container matColumnDef="id_servicio" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.id_servicio}} </td>
+            </ng-container>
+
             <ng-container matColumnDef="nombre" class="table-head">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE </th>
                 <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="descripcion" class="table-head">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> DESCRIPCION </th>
-                <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+            <ng-container matColumnDef="observacion" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> OBSERVACION </th>
+                <td mat-cell *matCellDef="let element"> {{element.observacion}} </td>
             </ng-container>
 
 
@@ -222,15 +227,21 @@
 
             <ng-container matColumnDef="estado_servicio" class="table-head">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> ESTADO </th>
-                <td mat-cell *matCellDef="let element" class="estado_servicio"> {{element.estado_servicio}} EN PROCESO
+
+                <td mat-cell *matCellDef="let element">
+                    <div class="estado_completo" *ngIf="element.estado_servicio == 1">Completado</div>
+                    <div class="estado_proceso" *ngIf="element.estado_servicio == 2">En proceso</div>
+                    <div class="estado_ingresado" *ngIf="element.estado_servicio == 3">Ingresado</div>
+                    <div class="estado_pendiente" *ngIf="element.estado_servicio == 4">Pendiente</div>
+                    <div class="estado_problema" *ngIf="element.estado_servicio == 5">Con problemas</div>
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="detalle" class="table-head">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> DETALLE </th>
                 <td mat-cell *matCellDef="let element">
-
-
+            
+            
                     <a class="btn btn-info fa-solid fa-eye" style="color:white;"
                         (click)="verDetalle(element.id_historial_servicio)"></a>
                     <app-modal-historial-servicio-edit (refreshTable)="refreshTable()">
@@ -239,6 +250,12 @@
             </ng-container>
 
 
+            <ng-container matColumnDef="pdf" class="table-head">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> EXPORTAR </th>
+                <td mat-cell *matCellDef="let element">
+                    <a class="btn btn-danger fas fa-file-pdf" style="color:white;"></a>
+                </td>
+            </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -249,7 +266,8 @@
             </tr>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" aria-label="Select page of users"></mat-paginator>
     </div>
 
-</div>
+</div>           
+

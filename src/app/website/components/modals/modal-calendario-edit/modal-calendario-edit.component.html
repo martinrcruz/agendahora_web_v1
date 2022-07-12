@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
- 
 
-        <c-modal id="openModal" [visible]="visible"  size="lg" (visibleChange)="handleModalChange($event)">
+
+        <c-modal id="openModal" [visible]="visible" size="lg" (visibleChange)="handleModalChange($event)">
             <c-modal-header>
-                <h5 cModalTitle>Editar horario</h5>
+                <h5 cModalTitle>Gestionar Hora Agendada</h5>
                 <button (click)="openModal()" cButtonClose></button>
             </c-modal-header>
             <c-modal-body>
@@ -15,7 +15,6 @@
                         <div class="row">
                             <div class="text-center pb-4" style="color:red;">
                                 {{ errorMessage }}
-
                             </div>
                         </div>
                     </div>
@@ -29,104 +28,208 @@
                         <form [formGroup]="calendarioForm" (ngSubmit)="updateCalendario()">
 
                             <div class="container">
+
                                 <div class="row">
-                                    <div class="col-3">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Id hora agenda" type="text"
-                                                name="id_hora_agenda" formControlName="id_hora_agenda" [readonly]="true" />
-                                            <label cLabel for="floatingInput">Id Hora Agenda</label>
+                                  
+                                </div>
+                                <div class="row tecnico-selection">
+                                    <div class="col-12">
+                                        <p class="text-selection">Actualiza el estado de la hora agendada.
+                                        </p>
+                                        <select aria-label="Large select example" cSelect class="mb-3"
+                                            name="estado_solicitud" id="floatingInput"
+                                            formControlName="estado_solicitud">
+                                            <option value="1">1.- Completado </option>
+                                            <option value="2">2.- En Proceso </option>
+                                            <option value="3">3.- Ingresado </option>
+                                            <option value="4">4.- Pendiente </option>
+                                            <option value="5">5.- Con problemas </option>
+                                            <option value="6">6.- Cancelado </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="text-selection">Selecciona al tecnico que se encargara del servicio.
+                                        </p>
+
+                                        <label cLabel for="floatingInput">Tecnico</label>
+                                        <select aria-label="Large select example" cSelect class="mb-3" sizing="lg"
+                                            placeholder="Tecnico" name="id_tecnico" id="floatingInput"
+                                            formControlName="id_tecnico">
+                                            <option *ngFor="let tecnico of selectorTecnico" value="{{tecnico.id}}">
+                                                {{tecnico.first_name + ' ' + tecnico.last_name}}</option>
+
+                                        </select>
+
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-2">
+                                        <div class="mb-3">
+                                            <p class="form-item-title">Id Hora: </p>
+                                            <p class="form-item-text">{{this.formularioObj.id_hora_agenda}}</p>
                                         </div>
                                     </div>
+                                    <div class="col-10">
+                                        <div class="mb-3">
+                                            <p class="form-item-title">Asunto: </p>
+                                            <p class="form-item-text">{{this.formularioObj.nombre}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <p class="form-item-title">Observacion: </p>
+                                            <p class="form-item-text">{{this.formularioObj.observacion}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <p class="form-item-title">Detalles: </p>
+                                            <p class="form-item-text">{{this.formularioObj.detalle}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
                                     <div class="col-3">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Id Servicio " type="text"
-                                                name="id_servicio" formControlName="id_servicio" />
-                                            <label cLabel for="floatingInput">Id Servicio </label>
+                                        <div class="mb-3">
+                                            <p class="form-item-title">Id Servicio: </p>
+                                            <p class="form-item-text">{{this.formularioObj.tipo_servicio}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="mb-3">
+                                            <p class="form-item-title">Tipo Servicio: </p>
+                                            <p class="form-item-text">{{this.formularioObj.nombre_tipo_servicio}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <p class="form-item-title">Fecha Agenda: </p>
+                                            <p class="form-item-text">{{this.formularioObj.fecha_agenda}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+
+                                            <p class="form-item-title">Inicio Hora Agenda: </p>
+                                            <p class="form-item-text">{{this.formularioObj.agenda_inicio}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+
+
+                                            <p class="form-item-title">Fin Hora Agenda: </p>
+                                            <p class="form-item-text">{{this.formularioObj.agenda_fin}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="mb-3">
+
+                                            <p class="form-item-title">Id Supervisor: </p>
+                                            <p class="form-item-text">{{this.formularioObj.id_supervisor}}</p>
                                         </div>
                                     </div>
 
-                                    <div class="col-3">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="nombre " type="text"
-                                                name="nombre" formControlName="nombre" />
-                                            <label cLabel for="floatingInput">nombre </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Descripcion " type="text"
-                                                name="descripcion" formControlName="descripcion" />
-                                            <label cLabel for="floatingInput">Descripcion </label>
+                                    <div class="col-9">
+                                        <div class="mb-3">
+
+                                            <p class="form-item-title">Nombre Supervisor: </p>
+                                            <p class="form-item-text">{{this.formularioObj.nombre_supervisor}}</p>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-3">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Fecha de Entrada" type="date"
-                                                name="fecha_entrada" formControlName="fecha_entrada" />
-                                            <label cLabel for="floatingInput">Fecha de Entrada</label>
+                                        <div class="mb-3">
+                                            <p class="form-item-title">Id Cliente: </p>
+                                            <p class="form-item-text">{{this.formularioObj.id_cliente}}</p>
                                         </div>
                                     </div>
-                                    <div class="col-3">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Fecha de Salida" type="date"
-                                                name="fecha_salida" formControlName="fecha_salida" />
-                                            <label cLabel for="floatingInput">Fecha de Salida </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Id Usuario Tecnico" type="text"
-                                                name="id_usuario_tecnico" formControlName="id_usuario_tecnico" />
-                                            <label cLabel for="floatingInput">Id Usuario Tecnico</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Id Cliente" type="text"
-                                                name="id_cliente" formControlName="id_cliente" />
-                                            <label cLabel for="floatingInput">Id Cliente</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Id Vehiculo" type="text"
-                                                name="id_vehiculo" formControlName="id_vehiculo" />
-                                            <label cLabel for="floatingInput">Id Vehiculo</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div cFormFloating class="mb-3">
-                                            <input cFormControl id="floatingInput" placeholder="Id Usuario Cargo" type="text"
-                                                name="id_usuario_cargo" formControlName="id_usuario_cargo" />
-                                            <label cLabel for="floatingInput">Id Usuario Cargo</label>
+
+                                    <div class="col-9">
+                                        <div class="mb-3">
+                                            <p class="form-item-title">Nombre Cliente: </p>
+                                            <p class="form-item-text">{{this.formularioObj.nombre_cliente}}</p>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-2">
+                                        <div class="mb-3">
+                                            <p class="form-item-title">Id Vehiculo: </p>
+                                            <p class="form-item-text">{{this.formularioObj.id_vehiculo}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="mb-3">
+                                            <p class="form-item-title">Marca: </p>
+                                            <p class="form-item-text">{{this.formularioObj.marca}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="mb-3">
+                                            <p class="form-item-title">Modelo: </p>
+                                            <p class="form-item-text">{{this.formularioObj.modelo}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <p class="form-item-title">Version: </p>
+                                            <p class="form-item-text">{{this.formularioObj.version}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
 
 
                             <c-modal-footer>
-                                <button cButton class="btn-enviar" (click)=deleteCalendario() type="button">Eliminar
-                            </button>
-                                <button cButton class="btn-enviar"  type="submit"
-                                    [disabled]="calendarioForm.invalid">Editar
-                            </button>
+                                <button cButton class="btn-revisar" [disabled]="state == 1" (click)=reviewHora()
+                                    type="submit">Dejar en Revisado
+                                </button>
+                                <button cButton class="btn-rechazo" [disabled]="state == 1" (click)=rejectHora()
+                                    type="button">Rechazar
+                                </button>
 
+                                <button cButton class="btn-apruebo" [disabled]="state == 1" (click)=acceptHora()
+                                    type="submit">Aprobar
+                                </button>
                                 <button (click)="openModal()" class="btn-cerrar" cButton>
                                     Cerrar
                                 </button>
                             </c-modal-footer>
                         </form>
 
-
-
-
                     </div>
                 </div>
 
             </c-modal-body>
-
         </c-modal>
     </div>
+</div>

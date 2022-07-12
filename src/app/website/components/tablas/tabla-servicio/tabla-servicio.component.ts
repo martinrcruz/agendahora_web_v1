@@ -20,7 +20,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class TablaServicioComponent implements OnInit {
 
-  displayedColumns: string[] = ['nombre', 'descripcion', 'nombre_cliente', 'id_vehiculo', 'marca', 'modelo', 'version', 'nombre_tecnico', 'fecha_entrada', 'fecha_salida', 'estado_servicio', 'revisar', 'editar', 'pdf'];
+  displayedColumns: string[] = ['id_servicio', 'nombre', 'observacion', 'nombre_cliente', 'id_vehiculo', 'marca', 'modelo', 'version', 'nombre_tecnico', 'fecha_entrada', 'fecha_salida', 'estado_servicio', 'revisar', 'pdf'];//'editar',
 
   dataSource: any
   selectorMarcaData: any
@@ -28,10 +28,12 @@ export class TablaServicioComponent implements OnInit {
   selectorVersionData: any
   selectorTecnicoData: any
   selectorEstadoData: any
+
   @ViewChild(MatPaginator) paginator: any = MatPaginator;
   @ViewChild(MatSort) sort: any = MatSort;
   @ViewChild(ModalServicioCheckComponent) checkView!: ModalServicioCheckComponent;
   @ViewChild(ModalServicioEditComponent) editView!: ModalServicioEditComponent;
+
 
 
   constructor(
@@ -55,6 +57,7 @@ export class TablaServicioComponent implements OnInit {
   }
 
   refreshTable() {
+    console.log('refreshed')
     this.getServicio(null);
   }
 
@@ -246,14 +249,4 @@ export class TablaServicioComponent implements OnInit {
         }
       })
   }
-
-
-
-
-
-
-
-
-
-
 }

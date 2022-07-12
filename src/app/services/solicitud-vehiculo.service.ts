@@ -18,7 +18,7 @@ export class SolicitudVehiculoService {
     return this.http.get<SolicitudVehiculo>(`${this.apiUrl}/${this.controllerUrl}/getSolicitudVehiculo`);
   }
   getSolicitudVehiculoById(id: any) {
-    return this.http.post<SolicitudVehiculo>(`${this.apiUrl}${this.controllerUrl}/getSolicitudVehiculoById`, id);
+    return this.http.get<SolicitudVehiculo>(`${this.apiUrl}${this.controllerUrl}/getSolicitudVehiculoById/` + id);
   }
 
   addSolicitudVehiculo(solicitudVehiculoData: any) {

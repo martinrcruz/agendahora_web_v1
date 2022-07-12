@@ -31,7 +31,7 @@ export class ModalCalendarioAddComponent implements OnInit {
     id_hora_agenda: new FormControl({value: 'No aplica', disabled: true}),
     id_servicio: new FormControl('', Validators.required),
     nombre: new FormControl('', Validators.required),
-    descripcion: new FormControl('', Validators.required),
+    observacion: new FormControl('', Validators.required),
     fecha_entrada: new FormControl('', Validators.required),
     fecha_salida: new FormControl('', Validators.required),
     id_usuario_tecnico: new FormControl('', Validators.required),
@@ -44,7 +44,7 @@ export class ModalCalendarioAddComponent implements OnInit {
     var formData: any = new FormData();
     formData.append("id_servicio", this.calendarioForm.get("id_servicio")?.value);
     formData.append("nombre", this.calendarioForm.get("nombre")?.value);
-    formData.append("descripcion", this.calendarioForm.get("descripcion")?.value);
+    formData.append("observacion", this.calendarioForm.get("observacion")?.value);
     formData.append("fecha_entrada", this.calendarioForm.get("fecha_entrada")?.value);
     formData.append("fecha_salida", this.calendarioForm.get("fecha_salida")?.value);
     formData.append("id_usuario_tecnico", this.calendarioForm.get("id_usuario_tecnico")?.value);

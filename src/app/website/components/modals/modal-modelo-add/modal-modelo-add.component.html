@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="row">
+        <button (click)="openModal()" cButton class="openModalButton"><i class="fa-solid fa-plus"></i> Agregar
+            Modelo</button>
+
+        <c-modal id="openModal" [visible]="visible" size="lg" (visibleChange)="handleModalChange($event)">
+            <c-modal-header>
+                <h5 cModalTitle>Agregar un Modelo</h5>
+                <button (click)="openModal()" cButtonClose></button>
+            </c-modal-header>
+            <c-modal-body>
+
+                <!-- <div *ngIf="!modeloForm.valid" class="alert alert-danger" role="alert"> -->
+                <span [ngClass]="errorClass">
+                    <div class="container">
+                        <div class="row">
+                            <div class="text-center pb-4" style="color:red;">
+                                {{ errorMessage }}
+                            </div>
+                        </div>
+                    </div>
+                </span>
+                <!-- </div> -->
+
+                <div class="container-fluid">
+                    <div class="row">
+
+
+
+                        <form [formGroup]="modeloForm" (ngSubmit)="addModelo()">
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Id Modelo</label>
+                                            <input cFormControl id="floatingInput" placeholder="id_modelo" type="text"
+                                                name="id_modelo" formControlName="id_modelo" [readonly]="true" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-9">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Id marca</label>
+                                            <input cFormControl id="floatingInput" placeholder="id_marca" type="text"
+                                                name="id_marca" formControlName="id_marca" />
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Nombre</label>
+                                            <input cFormControl id="floatingInput" placeholder="nombre" type="text"
+                                                name="nombre" formControlName="nombre" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Logo</label>
+                                            <input cFormControl id="floatingInput" placeholder="logo" type="text"
+                                                name="logo" formControlName="logo" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-7">
+                                        <div class="mb-3" style="text-align: justify;">
+                                            <label cLabel for="floatingInput">Descripcion</label>
+                                            <input cFormControl id="floatingInput" placeholder="Descripcion" type="text"
+                                                name="descripcion" formControlName="descripcion" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <c-modal-footer>
+
+                                <button cButton class="btn-enviar" type="submit"
+                                    [disabled]="modeloForm.invalid">Agregar</button>
+
+                                <button (click)="openModal()" class="btn-cerrar" cButton>
+                                    Cerrar
+                                </button>
+                            </c-modal-footer>
+                        </form>
+
+
+
+                    </div>
+                </div>
+
+            </c-modal-body>
+
+        </c-modal>
+    </div>
+</div>

@@ -95,12 +95,23 @@ import { ModalAgendaCheckComponent } from './website/components/modals/modal-age
 import { MarcaComponent } from './website/pages/marca/marca.component';
 import { ModeloComponent } from './website/pages/modelo/modelo.component';
 import { VersionComponent } from './website/pages/version/version.component';
-
+import { ModalMarcaAddComponent } from './website/components/modals/modal-marca-add/modal-marca-add.component';
+import { ModalMarcaEditComponent } from './website/components/modals/modal-marca-edit/modal-marca-edit.component';
+import { ModalModeloAddComponent } from './website/components/modals/modal-modelo-add/modal-modelo-add.component';
+import { ModalModeloEditComponent } from './website/components/modals/modal-modelo-edit/modal-modelo-edit.component';
+import { ModalVersionAddComponent } from './website/components/modals/modal-version-add/modal-version-add.component';
+import { ModalVersionEditComponent } from './website/components/modals/modal-version-edit/modal-version-edit.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { Grafico1Component } from './website/components/graficos/grafico1/grafico1.component';
 import { Grafico2Component } from './website/components/graficos/grafico2/grafico2.component';
 import { Grafico3Component } from './website/components/graficos/grafico3/grafico3.component';
 import { ChartjsModule } from '@coreui/angular-chartjs';
+import { TablaMarcaComponent } from './website/components/tablas/tabla-marca/tabla-marca.component';
+import { TablaModeloComponent } from './website/components/tablas/tabla-modelo/tabla-modelo.component';
+import { TablaVersionComponent } from './website/components/tablas/tabla-version/tabla-version.component';
+import { EstadoServicioComponent } from './website/pages/estado-servicio/estado-servicio.component';
+import { EstadoSolicitudComponent } from './website/pages/estado-solicitud/estado-solicitud.component';
+import { TipoServicioComponent } from './website/pages/tipo-servicio/tipo-servicio.component';
 
 //[ANGULAR MATERIAL]
 import { MatTableModule } from '@angular/material/table';
@@ -121,6 +132,7 @@ import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { ModalAgendaEditComponent } from './website/components/modals/modal-agenda-edit/modal-agenda-edit.component';
 
 
 
@@ -195,8 +207,21 @@ const APP_CONTAINERS = [
     ModalAgendaCheckComponent,
     MarcaComponent,
     ModeloComponent,
-    VersionComponent
-    ],
+    VersionComponent,
+    TablaMarcaComponent,
+    TablaModeloComponent,
+    TablaVersionComponent,
+    ModalMarcaAddComponent,
+    ModalMarcaEditComponent,
+    ModalModeloAddComponent,
+    ModalModeloEditComponent,
+    ModalVersionAddComponent,
+    ModalVersionEditComponent,
+    EstadoServicioComponent,
+    EstadoSolicitudComponent,
+    TipoServicioComponent,
+    ModalAgendaEditComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

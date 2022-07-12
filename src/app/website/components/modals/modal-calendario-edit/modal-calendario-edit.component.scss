@@ -1,0 +1,68 @@
+.openModalButton {
+    margin: 15px 0px 0px 0px;
+    background-color: #3a7fa7;
+    border: none;
+}
+
+.btn-enviar {
+    background-color: rgb(67, 179, 95);
+    border: none;
+    padding: 10px 30px 10px 30px;
+    margin-top: 15px;
+    float: right;
+}
+
+.btn-cerrar {
+    background-color: rgb(170, 170, 170);
+    border: none;
+    padding: 10px 30px 10px 30px;
+    margin-top: 15px;
+    margin-left: 10%;
+    float: right;
+}
+
+c-modal-body {
+    padding-top: 20px;
+
+}
+
+.tecnico-selection {
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 25px 15px 15px 15px;
+    margin-bottom: 15px;
+}
+
+.btn-rechazo {
+    background-color: rgb(167, 54, 54);
+    border: none;
+    padding: 10px 30px 10px 30px;
+    margin-top: 15px;
+    float: left;
+}
+
+.btn-apruebo {
+    background-color: #37b853;
+    border: none;
+    padding: 10px 30px 10px 30px;
+    margin-top: 15px;
+    float: left;
+}
+
+.btn-revisar {
+    background-color: #8e1492;
+    border: none;
+    padding: 10px 30px 10px 30px;
+    margin-top: 15px;
+    float: left;
+}
+
+.form-item-title {
+    font-weight: 500;
+}
+
+.form-item-text {
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 10px;
+}

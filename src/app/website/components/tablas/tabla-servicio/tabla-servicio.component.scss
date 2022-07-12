@@ -1,10 +1,12 @@
 table {
   width: 100%;
-  border-radius: 5px ;
+  border-radius: 5px;
 }
+
 .contenedor-tabla {
   background-color: #ffffff;
 }
+
 .header {
   padding: 30px 0px 0px 30px;
 }
@@ -13,6 +15,7 @@ table {
   font-size: 14px;
   width: 100%;
 }
+
 .mat-elevation-z8 {
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -43,13 +46,13 @@ th {
 
 }
 
-.contenedor-filtro{
+.contenedor-filtro {
   background-color: #f3f3f3;
   padding: 15px;
 
 }
 
-.boton-filtro{
+.boton-filtro {
   background-color: rgb(179, 67, 67);
   border: none;
   padding: 10px 30px 10px 30px;
@@ -58,9 +61,10 @@ th {
   width: 140px;
 
 }
-.boton-reset{
+
+.boton-reset {
   background-color: rgb(224, 179, 28);
-  color:white;
+  color: white;
   border: none;
   padding: 10px 30px 10px 30px;
   margin-top: 10px;
@@ -69,6 +73,7 @@ th {
 
 
 }
+
 .mat-colum-nombre {
   word-wrap: break-word !important;
   white-space: unset !important;
@@ -76,7 +81,7 @@ th {
   width: 4% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
-  
+
   word-break: break-word;
 
   -ms-hyphens: auto;
@@ -84,6 +89,7 @@ th {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+
 .mat-colum-marca {
   word-wrap: break-word !important;
   white-space: unset !important;
@@ -99,6 +105,7 @@ th {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+
 .mat-colum-modelo {
   word-wrap: break-word !important;
   white-space: unset !important;
@@ -114,6 +121,7 @@ th {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+
 .mat-colum-patente {
   word-wrap: break-word !important;
   white-space: unset !important;
@@ -129,6 +137,7 @@ th {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+
 .mat-colum-id_cliente {
   word-wrap: break-word !important;
   white-space: unset !important;
@@ -144,6 +153,7 @@ th {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+
 .mat-colum-color {
   word-wrap: break-word !important;
   white-space: unset !important;
@@ -183,5 +193,50 @@ th {
   background-color: #f9b115;
   color: white;
   font-weight: 500;
-  padding: 3px 10px 3px 10px;
+  padding: 10px 10px 10px 10px;
+}
+
+.estado_completo {
+  background-color: green;
+  color: white;
+  font-weight: 500;
+  padding: 10px 10px 10px 10px;
+  margin: 10px;
+  border-radius: 6px;
+}
+
+.estado_proceso {
+  background-color: rgb(224, 202, 4);
+  color: white;
+  font-weight: 500;
+  padding: 10px 10px 10px 10px;
+  margin: 10px;
+  border-radius: 6px;
+}
+
+.estado_ingresado {
+  background-color: rgb(1, 131, 170);
+  color: white;
+  font-weight: 500;
+  padding: 10px 10px 10px 10px;
+  margin: 10px;
+  border-radius: 6px;
+}
+
+.estado_pendiente {
+  background-color: rgb(236, 87, 1);
+  color: white;
+  font-weight: 500;
+  padding: 10px 10px 10px 10px;
+  margin: 10px;
+  border-radius: 6px;
+}
+
+.estado_problema {
+  background-color: rgb(105, 22, 153);
+  color: white;
+  font-weight: 500;
+  padding: 10px 10px 10px 10px;
+  margin: 10px;
+  border-radius: 6px;
 }

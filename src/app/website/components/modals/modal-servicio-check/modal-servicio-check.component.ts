@@ -20,13 +20,13 @@ export class ModalServicioCheckComponent implements OnInit {
   saveResponse: any;
   editData: any;
 
-  @Output() refreshTable = new EventEmitter<string>();
+  @Output() onRefreshTable = new EventEmitter<string>();
 
 
   servicioCheckForm = new FormGroup({
     id_servicio: new FormControl({ value: 'no aplica', disabled: true }),
     nombre: new FormControl('', Validators.required),
-    descripcion: new FormControl('', Validators.required),
+    observacion: new FormControl('', Validators.required),
     detalles: new FormControl('', Validators.required),
     nombre_cliente: new FormControl('', Validators.required),
     id_cliente: new FormControl('', Validators.required),
@@ -52,7 +52,7 @@ export class ModalServicioCheckComponent implements OnInit {
           this.servicioCheckForm.setValue({
             id_servicio: this.editData.data[0].id_servicio,
             nombre: this.editData.data[0].nombre,
-            descripcion: this.editData.data[0].descripcion,
+            observacion: this.editData.data[0].observacion,
             detalles: this.editData.data[0].detalle,
             id_vehiculo: this.editData.data[0].id_vehiculo,
             id_tecnico: this.editData.data[0].id_tecnico,
@@ -90,7 +90,7 @@ export class ModalServicioCheckComponent implements OnInit {
             this.saveResponse = res;
             console.log(this.saveResponse)
             this.openModal()
-            this.refreshTable.emit();
+            this.onRefreshTable.emit();
           },
           error: (err) => {
             console.log(this.servicioCheckForm.getRawValue())
@@ -108,7 +108,7 @@ export class ModalServicioCheckComponent implements OnInit {
     this.servicioCheckForm.setValue({
       id_servicio: '',
       nombre: '',
-      descripcion: '',
+      observacion: '',
       id_vehiculo: '',
       id_tecnico: '',
     })
